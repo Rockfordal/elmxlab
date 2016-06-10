@@ -6,31 +6,6 @@ import Html.Events exposing (onInput)
 import List exposing (map)
 
 
-viewValidation : Model -> Html msg
-viewValidation model =
-  let
-    (color, message) =
-      if model.password == model.passwordAgain then
-        ("green", "OK")
-      else
-        ("red", "Passwords do not match!")
-  in
-    <div style={"color:" ++ color}>{=message}</div>
-
-
-showError : List (Html.Attribute ()) -> Html ()
-showError errorAttrs = <span {:errorAttrs}>Oops!</span>
-
-
-login : Model -> Html Msg
-login model =
-  <div>
-    <input type="text" placeholder="Name" {onInput Name} />
-    <input type="password" placeholder="Password" {onInput Password} />
-    <input type="password" placeholder="Re-enter Password" {onInput PasswordAgain} />
-    {viewValidation model}
-  </div>
-
 view : Model -> Html Msg
 view model =
   let
