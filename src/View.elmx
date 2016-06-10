@@ -11,7 +11,8 @@ view model =
   let
     hello = <h1><span style="color: green">Tjena2, <b>elmx!</b></span></h1>
     name = "Homer"
-    lis = map (\s -> <li class="collection-item">{=s}</li>) [ "Bart", "List", "Maggie" ]
+    placelist = [ "Bart", "List", "Maggie" ]
+    lis = map (\s -> <li class="collection-item">{=s}</li>) placelist
     commonAttrs =
       [ title "common title"
       , align "left"

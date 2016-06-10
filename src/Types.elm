@@ -5,6 +5,8 @@ type alias Model =
   { name : String
   , password : String
   , passwordAgain : String
+  , query : String
+  , results : List String
   }
 
 

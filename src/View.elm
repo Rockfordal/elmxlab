@@ -11,7 +11,8 @@ view model =
   let
     hello = Html.h1 [] [Html.span [Html.Attributes.attribute "style" "color: green"] [Html.text "Tjena2, ", Html.b [] [Html.text "elmx!"]]]
     name = "Homer"
-    lis = map (\s -> Html.li [Html.Attributes.attribute "class" "collection-item"] [Html.text s]) [ "Bart", "List", "Maggie" ]
+    placelist = [ "Bart", "List", "Maggie" ]
+    lis = map (\s -> Html.li [Html.Attributes.attribute "class" "collection-item"] [Html.text s]) placelist
     commonAttrs =
       [ title "common title"
       , align "left"

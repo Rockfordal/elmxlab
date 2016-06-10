@@ -1,10 +1,12 @@
 module State exposing (..)
 import Types exposing (Model, Msg(..))
-
+import Service 
+import Maybe exposing (..)
+import Task exposing (..)
 
 model : Model
 model =
-  Model "" "" ""
+  Model "" "" "" "93200" ["place1", "place2"]
 
 
 update : Msg -> Model -> Model
