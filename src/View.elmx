@@ -1,0 +1,46 @@
+module View exposing (..)
+import Types exposing (Model, Msg(..))
+import Html exposing (..)
+import Html.Attributes exposing (..)
+import Html.Events exposing (onInput)
+import List exposing (map)
+
+
+viewValidation : Model -> Html msg
+viewValidation model =
+  let
+    (color, message) =
+      if model.password == model.passwordAgain then
+        ("green", "OK")
+      else
+        ("red", "Passwords do not match!")
+  in
+    <div style={"color:" ++ color}>{=message}</div>
+
+
+showError : List (Html.Attribute ()) -> Html ()
+showError errorAttrs = <span {:errorAttrs}>Oops!</span>
+
+
+view : Model -> Html Msg
+view model =
+  let
+    hello = <h1><span style="color: green">Tjena2, <b>elmx!</b></span></h1>
+    name = "Homer"
+    lis = map (\s -> <li>{=s}</li>) [ "Bart", "List", "Maggie" ]
+    commonAttrs =
+      [ title "common title"
+      , align "left"
+      ]
+  in
+  <div>
+    <input type="text" placeholder="Name" {onInput Name} />
+    <input type="password" placeholder="Password" {onInput Password} />
+    <input type="password" placeholder="Re-enter Password" {onInput PasswordAgain} />
+    {viewValidation model}
+      <div class="container" {:commonAttrs}>
+        {hello}
+        {=name} is the father of:
+        <ul>{:lis}</ul>
+      </div>
+  </div>
