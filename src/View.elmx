@@ -22,25 +22,31 @@ showError : List (Html.Attribute ()) -> Html ()
 showError errorAttrs = <span {:errorAttrs}>Oops!</span>
 
 
+login : Model -> Html Msg
+login model =
+  <div>
+    <input type="text" placeholder="Name" {onInput Name} />
+    <input type="password" placeholder="Password" {onInput Password} />
+    <input type="password" placeholder="Re-enter Password" {onInput PasswordAgain} />
+    {viewValidation model}
+  </div>
+
 view : Model -> Html Msg
 view model =
   let
     hello = <h1><span style="color: green">Tjena2, <b>elmx!</b></span></h1>
     name = "Homer"
-    lis = map (\s -> <li>{=s}</li>) [ "Bart", "List", "Maggie" ]
+    lis = map (\s -> <li class="collection-item">{=s}</li>) [ "Bart", "List", "Maggie" ]
     commonAttrs =
       [ title "common title"
       , align "left"
       ]
   in
   <div>
-    <input type="text" placeholder="Name" {onInput Name} />
-    <input type="password" placeholder="Password" {onInput Password} />
-    <input type="password" placeholder="Re-enter Password" {onInput PasswordAgain} />
-    {viewValidation model}
       <div class="container" {:commonAttrs}>
         {hello}
+        <p><a class="waves-effect waves-light btn">button</a></p>
         {=name} is the father of:
-        <ul>{:lis}</ul>
+        <ul class="collection">{:lis}</ul>
       </div>
   </div>

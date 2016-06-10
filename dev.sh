@@ -1,2 +1,4 @@
 echo "Dont forget to run gulp"
-elm-live src/Main.elm
+cp base.html index.html
+#elm-live src/Main.elm
+elm-live src/Main.elm --output=elm.js --open
