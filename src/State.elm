@@ -1,22 +1,33 @@
 module State exposing (..)
-import Types exposing (Model, Msg(..))
-import Service 
+import Types exposing (Post, Model, Msg(..))
+import Service
 import Maybe exposing (..)
 import Task exposing (..)
+import Debug exposing (log)
 
 model : Model
 model =
-  Model "" "" "" "93200" ["place1", "place2"]
+  {posts = [newPost, newPost, nejPost]}
 
+newPost : Post
+newPost =
+   { title = "hej",
+      content = "Simple card. I am good at containing small bits of information.
+      I am convenient because I require little markup to use effectively."
+    }
 
-update : Msg -> Model -> Model
+nejPost : Post
+nejPost =
+   { title = "NEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEJ",
+      content = "SLUTA FIS!!!!!!"
+    }
+
+update : Msg -> Model -> (Model)
 update action model =
   case action of
-    Name name ->
-      { model | name = name }
-
-    Password password ->
-      { model | password = password }
-
-    PasswordAgain password ->
-      { model | passwordAgain = password }
+    UpdateTitle title ->
+      model
+      -- { model | title = title }
+    Pang ->
+      { model | posts = List.filter (\p -> p.title /= "hej") model.posts }
+    --  model

@@ -1,28 +1,82 @@
 module View exposing (..)
-import Types exposing (Model, Msg(..))
+import Types exposing (Post, Model, Msg(..))
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
 import List exposing (map)
+--
+-- navbar : Model -> Html Msg
+-- navbar model =
+--   -- let
+--   -- => <script>$( document ).ready(function(){
+--   -- $(".button-collapse").sideNav();
+--   -- })</script>
+--   -- in
+--     <div>
+--       <nav>
+--         <div class="nav-wrapper">
+--           <a href="#!" class="brand-logo">Logo</a>
+--           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+--           <ul class="right hide-on-med-and-down">
+--             <li><a href="sass.html">Sass</a></li>
+--             <li><a href="badges.html">Components</a></li>
+--             <li><a href="collapsible.html">Javascript</a></li>
+--             <li><a href="mobile.html">Mobile</a></li>
+--           </ul>
+--           <ul class="side-nav" id="mobile-demo">
+--             <li><a href="sass.html">Sass</a></li>
+--             <li><a href="badges.html">Components</a></li>
+--             <li><a href="collapsible.html">Javascript</a></li>
+--             <li><a href="mobile.html">Mobile</a></li>
+--           </ul>
+--         </div>
+--       </nav>
+--     </div>
+post : Post -> Html Msg
+post post =
+  <div class="row">
+    <div class="col l6 offset-l3 card">
+      <div class="card-content">
+        <span class="card-title">{= post.title}</span>
+        <p>{= post.content}</p>
+      </div>
+      <div class="card-action">
+        <a href="#">This is a link</a>
+        <a href="#">This is a link</a>
+      </div>
+    </div>
+  </div>
 
-
+-- lab : Model -> Html Msg
+-- lab model =
+--   let
+--     hello = <h1><span style="color: green">Tjena5, <b>elmx!</b></span></h1>
+--     name = "Homer"
+--     placelist = [ "Bart", "List", "Maggie" ]
+--     lis = map (\s -> <li class="collection-item">{=s}</li>) placelist
+--     commonAttrs =
+--       [ title "common title"
+--       , align "left"
+--       ]
+--   in
+--     <div>
+--       <div class="container" {:commonAttrs}>
+--         {hello}
+--         <p><a class="waves-effect waves-light btn">button</a></p>
+--         {=name} is the father of:
+--         <ul class="collection">{:lis}</ul>
+--       </div>
+--   </div>
 view : Model -> Html Msg
 view model =
   let
-    hello = <h1><span style="color: green">Tjena2, <b>elmx!</b></span></h1>
-    name = "Homer"
-    placelist = [ "Bart", "List", "Maggie" ]
-    lis = map (\s -> <li class="collection-item">{=s}</li>) placelist
-    commonAttrs =
-      [ title "common title"
-      , align "left"
-      ]
+  posts = (List.map (post) model.posts)
   in
   <div>
-      <div class="container" {:commonAttrs}>
-        {hello}
-        <p><a class="waves-effect waves-light btn">button</a></p>
-        {=name} is the father of:
-        <ul class="collection">{:lis}</ul>
+      {:posts}
+    <div class="row">
+      <div class="col l6 offset-l3">
+        <button class="btn red" onClick={Pang}>radera<i class="large material-icons">delete</i></button>
       </div>
+    </div>
   </div>
