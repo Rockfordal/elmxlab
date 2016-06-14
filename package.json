@@ -5,6 +5,7 @@
     "gulp-rename": "^1.2.2"
   },
   "dependencies": {
+    "elm-server": "^1.0.0",
     "elmx": "^1.0.3"
   }
 }
