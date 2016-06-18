@@ -1,14 +1,14 @@
 module State exposing (..)
 
 import Types exposing (Post, Model, Msg(..))
-import Service
 import Maybe exposing (..)
 import Task exposing (..)
 import Debug exposing (log)
+import Service as Service exposing (QueryPostsResult)
 
 
-model : Model
-model =
+initialmodel : Model
+initialmodel =
   {
     posts = [newPost, newPost, nejPost]
   }
