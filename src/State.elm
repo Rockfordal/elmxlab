@@ -2,9 +2,9 @@ module State exposing (..)
 
 import Types exposing (Post, Model, Msg(..))
 import Maybe exposing (..)
-import Task exposing (..)
-import Debug exposing (log)
-import Service as Service exposing (QueryPostsResult)
+--import Task exposing (..)
+--import Debug exposing (log)
+--import Service as Service exposing (QueryPostsResult)
 
 
 initialmodel : Model
