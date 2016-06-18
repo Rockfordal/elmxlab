@@ -5,46 +5,63 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
 import List exposing (map)
 
+-- link : Post -> Html Msg
+-- link post =
+--   <li><a href="#!">{= post.title }</a></li>
 
-post : Post -> Html Msg
-post post =
+menuitem : Post -> Html Msg
+menuitem post =
+  let
+    aktivklass = "active"
+  in
+  <li class={aktivklass}>
+    <a href="#" onClick={ SetPost post.id }>{= post.title}</a>
+  </li>
+
+postcontentz : Post -> Html Msg
+postcontentz post =
   <div class="row">
-    <div class="col l6 offset-l3 card">
-      <div class="card-content">
-        <span class="card-title">{= post.title}</span>
-        <p>{= post.content}</p>
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">{= post.title}</span>
+              <p>{= post.content}</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="card-action">
-        <a href="#">Citroner</a>
-        <a href="#">Bananer</a>
-      </div>
-    </div>
-  </div>
 
 
 view : Model -> Html Msg
 view model =
   let
-  posts = (List.map (post) model.posts)
+    posts = (List.map menuitem model.posts)
+    postcontent = [postcontentz model.post]
   in
   <div>
     <nav>
     <div class="nav-wrapper">
       <a href="#!" class="brand-logo">Logo</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="sass.html">Projekt</a></li>
-        <li><a href="collapsible.html">Länkar</a></li>
-      </ul>
+      <ul id="slide-out" class="side-nav fixed">
+      {:posts}
+      <li><a href="#" >Hoho</a></li>
+
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       <ul class="side-nav" id="mobile-demo">
         <li><a href="sass.html">Projekt</a></li>
         <li><a href="collapsible.html">Länkar</a></li>
       </ul>
     </div>
   </nav>
-      {:posts}
     <div class="row">
       <div class="col l6 offset-l3">
+        <div>{:postcontent}</div>
         <button class="btn red" onClick={Pang}>radera<i class="large material-icons">delete</i></button>
       </div>
     </div>
