@@ -1,9 +1,11 @@
 port module Types exposing (..)
-
+import Http
 
 type alias Model =
-  { posts : List Post
-  , post : Post
+  { topic  : String
+  , gifUrl : String
+  -- { posts : List Post
+  -- , post : Post
   }
 
 
@@ -13,10 +15,14 @@ type alias Post =
   , id : Int
   }
 
+
 type Msg
-    = UpdateTitle String
-    | Pang
-    | Texas
-    | Stöd
-    | Grillparty
-    | SetPost Int
+  = MorePlease
+  | FetchSucceed String
+  | FetchFail Http.Error
+  | UpdateTopic String
+  -- | Pang
+  -- | Texas
+  -- | Stöd
+  -- | Grillparty
+  -- | SetPost Int

@@ -1,68 +1,79 @@
 module View exposing (..)
-import Types exposing (Post, Model, Msg(..))
+import Types exposing (Model, Msg(..))
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
-import List exposing (map)
+-- import List exposing (map)
+
 
 -- link : Post -> Html Msg
 -- link post =
 --   <li><a href="#!">{= post.title }</a></li>
 
-menuitem : Post -> Html Msg
-menuitem post =
-  let
-    aktivklass = "active"
-  in
-  <li class={aktivklass}>
-    <a href="#" onClick={ SetPost post.id }>{= post.title}</a>
-  </li>
-
-postcontentz : Post -> Html Msg
-postcontentz post =
-  <div class="row">
-        <div class="col s12 m6">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title">{= post.title}</span>
-              <p>{= post.content}</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
+-- menuitem : Post -> Html Msg
+-- menuitem post =
+--   let
+--     aktivklass = "active"
+--   in
+--   <li class={aktivklass}>
+--     <a href="#" onClick={ SetPost post.id }>{= post.title}</a>
+--   </li>
+--
+-- postcontentz : Post -> Html Msg
+-- postcontentz post =
+--   <div class="row">
+--         <div class="col s12 m6">
+--           <div class="card blue-grey darken-1">
+--             <div class="card-content white-text">
+--               <span class="card-title">{= post.title}</span>
+--               <p>{= post.content}</p>
+--             </div>
+--             <div class="card-action">
+--               <a href="#">This is a link</a>
+--               <a href="#">This is a link</a>
+--             </div>
+--           </div>
+--         </div>
+--       </div>
+--
 
 view : Model -> Html Msg
 view model =
-  let
-    posts = (List.map menuitem model.posts)
-    postcontent = [postcontentz model.post]
-  in
   <div>
-    <nav>
-    <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Logo</a>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      <ul id="slide-out" class="side-nav fixed">
-      {:posts}
-      <li><a href="#" >Hoho</a></li>
-
-    </ul>
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-      <ul class="side-nav" id="mobile-demo">
-        <li><a href="sass.html">Projekt</a></li>
-        <li><a href="collapsible.html">Länkar</a></li>
-      </ul>
+    <div class="input-field col s6">
+      <label for="topic">Sök ämne</label>
+      <input type="text" class="validate" onInput={UpdateTopic} value={model.topic}>
     </div>
-  </nav>
-    <div class="row">
-      <div class="col l6 offset-l3">
-        <div>{:postcontent}</div>
-        <button class="btn red" onClick={Pang}>radera<i class="large material-icons">delete</i></button>
-      </div>
-    </div>
+    <button class="btn red" onClick={MorePlease}>Ladda fler</button>
+    <br/>
+    <img src={model.gifUrl}></img>
   </div>
+
+--   let
+--     -- posts = (List.map menuitem model.posts)
+--     -- postcontent = [postcontentz model.post]
+--   in
+--   <div>
+--     <nav>
+--     <div class="nav-wrapper">
+--       <a href="#!" class="brand-logo">Logo</a>
+--       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+--       <ul id="slide-out" class="side-nav fixed">
+--       {:posts}
+--       <li><a href="#" >Hoho</a></li>
+--
+--     </ul>
+--     <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+--       <ul class="side-nav" id="mobile-demo">
+--         <li><a href="sass.html">Projekt</a></li>
+--         <li><a href="collapsible.html">Länkar</a></li>
+--       </ul>
+--     </div>
+--   </nav>
+--     <div class="row">
+--       <div class="col l6 offset-l3">
+--         <div>{:postcontent}</div>
+--         <button class="btn red" onClick={Pang}>radera<i class="large material-icons">delete</i></button>
+--       </div>
+--     </div>
+--   </div>
