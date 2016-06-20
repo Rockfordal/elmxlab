@@ -37,8 +37,18 @@ import Html.Events exposing (onInput)
 --       </div>
 --
 
+
+postitem : String -> Html Msg
+postitem post =
+  <li class="collection">
+    {= post}
+  </li>
+
 view : Model -> Html Msg
 view model =
+  let
+    posts = (List.map postitem model.posts)
+  in
   <div>
     <div class="input-field col s6">
       <label for="topic">Sök ämne</label>
@@ -47,6 +57,10 @@ view model =
     <button class="btn red" onClick={MorePlease}>Ladda fler</button>
     <br/>
     <img src={model.gifUrl}></img>
+    <div>Poster:</div>
+    <ul class="collection">
+    {:posts}
+    </ul>
   </div>
 
 --   let

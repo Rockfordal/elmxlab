@@ -4,7 +4,8 @@ import Http
 type alias Model =
   { topic  : String
   , gifUrl : String
-  -- { posts : List Post
+  , posts  : List String
+  -- , posts  : List Post
   -- , post : Post
   }
 
@@ -18,7 +19,7 @@ type alias Post =
 
 type Msg
   = MorePlease
-  | FetchSucceed String
+  | FetchSucceed (List String)
   | FetchFail Http.Error
   | UpdateTopic String
   -- | Pang

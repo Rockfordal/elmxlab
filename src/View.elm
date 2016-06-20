@@ -37,8 +37,18 @@ import Html.Events exposing (onInput)
 --       "]
 --
 
+
+postitem : String -> Html Msg
+postitem post =
+  Html.li [Html.Attributes.attribute "class" "collection"] [
+    Html.text  post
+  ]
+
 view : Model -> Html Msg
 view model =
+  let
+    posts = (List.map postitem model.posts)
+  in
   Html.div [] [
     Html.div [Html.Attributes.attribute "class" "input-field col s6"] [
       Html.label [Html.Attributes.attribute "for" "topic"] [Html.text "Sök ämne"]
@@ -47,6 +57,10 @@ view model =
     , Html.button [Html.Attributes.attribute "class" "btn red", Html.Events.onClick MorePlease] [Html.text "Ladda fler"]
     , Html.br [] []
     , Html.img [Html.Attributes.attribute "src" model.gifUrl] []
+    , Html.div [] [Html.text "Poster:"]
+    , Html.ul [Html.Attributes.attribute "class" "collection"] ([
+    ] ++ posts ++ [
+    ])
   ]
 
 --   let
