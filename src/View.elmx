@@ -2,14 +2,49 @@ module View exposing (..)
 import Types exposing (Model, Msg(..))
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Viewmini exposing (..)
 import Html.Events exposing (onInput)
 -- import List exposing (map)
 
 
+view : Model -> Html Msg
+view model =
+  let
+    posts = (List.map postitem model.posts)
+  in
+  <div>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Logo</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul id="slide-out" class="side-nav fixed">
+        </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+        <ul class="side-nav" id="mobile-demo">
+          <li><a href="sass.html">Projekt</a></li>
+          <li><a href="collapsible.html">Länkar</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="row">
+      <div class="col l6 offset-l3">
+        {:posts}
+      </div>
+    </div>
+  </div>
+
+-- <div class="input-field col s6">
+--   <input id="topic" type="text" class="validate" onInput={UpdateTopic} value={model.topic}>
+--   <label for="topic">Sök ämne</label>
+-- </div>
+
+-- <ul class="collection">
+-- </ul>
 -- link : Post -> Html Msg
 -- link post =
 --   <li><a href="#!">{= post.title }</a></li>
-
+--
 -- menuitem : Post -> Html Msg
 -- menuitem post =
 --   let
@@ -35,59 +70,6 @@ import Html.Events exposing (onInput)
 --           </div>
 --         </div>
 --       </div>
---
 
-
-postitem : String -> Html Msg
-postitem post =
-  <li class="collection">
-    {= post}
-  </li>
-
-view : Model -> Html Msg
-view model =
-  let
-    posts = (List.map postitem model.posts)
-  in
-  <div>
-    <div class="input-field col s6">
-      <label for="topic">Sök ämne</label>
-      <input type="text" class="validate" onInput={UpdateTopic} value={model.topic}>
-    </div>
-    <button class="btn red" onClick={MorePlease}>Ladda fler</button>
-    <br/>
-    <img src={model.gifUrl}></img>
-    <div>Poster:</div>
-    <ul class="collection">
-    {:posts}
-    </ul>
-  </div>
-
---   let
---     -- posts = (List.map menuitem model.posts)
---     -- postcontent = [postcontentz model.post]
---   in
---   <div>
---     <nav>
---     <div class="nav-wrapper">
---       <a href="#!" class="brand-logo">Logo</a>
---       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
---       <ul id="slide-out" class="side-nav fixed">
---       {:posts}
---       <li><a href="#" >Hoho</a></li>
---
---     </ul>
---     <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
---       <ul class="side-nav" id="mobile-demo">
---         <li><a href="sass.html">Projekt</a></li>
---         <li><a href="collapsible.html">Länkar</a></li>
---       </ul>
---     </div>
---   </nav>
---     <div class="row">
---       <div class="col l6 offset-l3">
---         <div>{:postcontent}</div>
---         <button class="btn red" onClick={Pang}>radera<i class="large material-icons">delete</i></button>
---       </div>
---     </div>
---   </div>
+-- <button class="btn red" onClick={Pang}>radera<i class="large material-icons">delete</i></button>
+-- <button class="btn red" onClick={MorePlease}>Ladda fler</button>

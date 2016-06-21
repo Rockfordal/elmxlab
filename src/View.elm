@@ -2,14 +2,49 @@ module View exposing (..)
 import Types exposing (Model, Msg(..))
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Viewmini exposing (..)
 import Html.Events exposing (onInput)
 -- import List exposing (map)
 
 
+view : Model -> Html Msg
+view model =
+  let
+    posts = (List.map postitem model.posts)
+  in
+  Html.div [] [
+    Html.nav [] [
+      Html.div [Html.Attributes.attribute "class" "nav-wrapper"] [
+        Html.a [Html.Attributes.attribute "href" "#!", Html.Attributes.attribute "class" "brand-logo"] [Html.text "Logo"]
+        , Html.a [Html.Attributes.attribute "href" "#", Html.Attributes.attribute "data-activates" "mobile-demo", Html.Attributes.attribute "class" "button-collapse"] [Html.i [Html.Attributes.attribute "class" "material-icons"] [Html.text "menu"]]
+        , Html.ul [Html.Attributes.attribute "id" "slide-out", Html.Attributes.attribute "class" "side-nav fixed"] [
+        ]
+        , Html.a [Html.Attributes.attribute "href" "#", Html.Attributes.attribute "data-activates" "slide-out", Html.Attributes.attribute "class" "button-collapse"] [Html.i [Html.Attributes.attribute "class" "mdi-navigation-menu"] []]
+        , Html.ul [Html.Attributes.attribute "class" "side-nav", Html.Attributes.attribute "id" "mobile-demo"] [
+          Html.li [] [Html.a [Html.Attributes.attribute "href" "sass.html"] [Html.text "Projekt"]]
+          , Html.li [] [Html.a [Html.Attributes.attribute "href" "collapsible.html"] [Html.text "Länkar"]]
+        ]
+      ]
+    ]
+
+    , Html.div [Html.Attributes.attribute "class" "row"] [
+      Html.div [Html.Attributes.attribute "class" "col l6 offset-l3"] ([
+        ] ++ posts ++ [
+      ])
+    ]
+  ]
+
+-- Html.div [Html.Attributes.attribute "class" "input-field col s6"] [Html.text "
+--   ", Html.input [Html.Attributes.attribute "id" "topic", Html.Attributes.attribute "type" "text", Html.Attributes.attribute "class" "validate", Html.Events.onInput UpdateTopic, Html.Attributes.attribute "value" model.topic] [], Html.text "
+--   ", Html.label [Html.Attributes.attribute "for" "topic"] [Html.text "Sök ämne"], Html.text "
+-- "]
+
+-- Html.ul [Html.Attributes.attribute "class" "collection"] [Html.text "
+-- "]
 -- link : Post -> Html Msg
 -- link post =
 --   Html.li [] [Html.a [Html.Attributes.attribute "href" "#!"] [Html.text  post.title ]]
-
+--
 -- menuitem : Post -> Html Msg
 -- menuitem post =
 --   let
@@ -35,59 +70,6 @@ import Html.Events exposing (onInput)
 --           "], Html.text "
 --         "], Html.text "
 --       "]
---
 
-
-postitem : String -> Html Msg
-postitem post =
-  Html.li [Html.Attributes.attribute "class" "collection"] [
-    Html.text  post
-  ]
-
-view : Model -> Html Msg
-view model =
-  let
-    posts = (List.map postitem model.posts)
-  in
-  Html.div [] [
-    Html.div [Html.Attributes.attribute "class" "input-field col s6"] [
-      Html.label [Html.Attributes.attribute "for" "topic"] [Html.text "Sök ämne"]
-      , Html.input [Html.Attributes.attribute "type" "text", Html.Attributes.attribute "class" "validate", Html.Events.onInput UpdateTopic, Html.Attributes.attribute "value" model.topic] []
-    ]
-    , Html.button [Html.Attributes.attribute "class" "btn red", Html.Events.onClick MorePlease] [Html.text "Ladda fler"]
-    , Html.br [] []
-    , Html.img [Html.Attributes.attribute "src" model.gifUrl] []
-    , Html.div [] [Html.text "Poster:"]
-    , Html.ul [Html.Attributes.attribute "class" "collection"] ([
-    ] ++ posts ++ [
-    ])
-  ]
-
---   let
---     -- posts = (List.map menuitem model.posts)
---     -- postcontent = [postcontentz model.post]
---   in
---   Html.div [] [Html.text "
---     ", Html.nav [] [Html.text "
---     ", Html.div [Html.Attributes.attribute "class" "nav-wrapper"] [Html.text "
---       ", Html.a [Html.Attributes.attribute "href" "#!", Html.Attributes.attribute "class" "brand-logo"] [Html.text "Logo"], Html.text "
---       ", Html.a [Html.Attributes.attribute "href" "#", Html.Attributes.attribute "data-activates" "mobile-demo", Html.Attributes.attribute "class" "button-collapse"] [Html.i [Html.Attributes.attribute "class" "material-icons"] [Html.text "menu"]], Html.text "
---       ", Html.ul [Html.Attributes.attribute "id" "slide-out", Html.Attributes.attribute "class" "side-nav fixed"] ([Html.text "
---       "] ++ posts ++ [Html.text "
---       ", Html.li [] [Html.a [Html.Attributes.attribute "href" "#"] [Html.text "Hoho"]], Html.text "
---
---     "]), Html.text "
---     ", Html.a [Html.Attributes.attribute "href" "#", Html.Attributes.attribute "data-activates" "slide-out", Html.Attributes.attribute "class" "button-collapse"] [Html.i [Html.Attributes.attribute "class" "mdi-navigation-menu"] []], Html.text "
---       ", Html.ul [Html.Attributes.attribute "class" "side-nav", Html.Attributes.attribute "id" "mobile-demo"] [Html.text "
---         ", Html.li [] [Html.a [Html.Attributes.attribute "href" "sass.html"] [Html.text "Projekt"]], Html.text "
---         ", Html.li [] [Html.a [Html.Attributes.attribute "href" "collapsible.html"] [Html.text "Länkar"]], Html.text "
---       "], Html.text "
---     "], Html.text "
---   "], Html.text "
---     ", Html.div [Html.Attributes.attribute "class" "row"] [Html.text "
---       ", Html.div [Html.Attributes.attribute "class" "col l6 offset-l3"] [Html.text "
---         ", Html.div [] postcontent, Html.text "
---         ", Html.button [Html.Attributes.attribute "class" "btn red", Html.Events.onClick Pang] [Html.text "radera", Html.i [Html.Attributes.attribute "class" "large material-icons"] [Html.text "delete"]], Html.text "
---       "], Html.text "
---     "], Html.text "
---   "]
+-- Html.button [Html.Attributes.attribute "class" "btn red", Html.Events.onClick Pang] [Html.text "radera", Html.i [Html.Attributes.attribute "class" "large material-icons"] [Html.text "delete"]]
+-- Html.button [Html.Attributes.attribute "class" "btn red", Html.Events.onClick MorePlease] [Html.text "Ladda fler"]
