@@ -65,25 +65,7 @@ module.exports = {
     extensions: ['', '.js', '.elm']
   },
 
-
-  // module: {
-  //   loaders: [
-  //     {
-  //       test: /\.html$/,
-  //       exclude: /node_modules/,
-  //       loader: 'file?name=[name].[ext]'
-  //     },
-  //     {
-  //       test: /\.elm$/,
-  //       exclude: [/elm-stuff/, /node_modules/],
-  //       loader: 'elm-hot!elm-webpack'
-  //     }
-  //   ],
-
-  //   noParse: /\.elm$/
-  // },
-
-    // module: { preLoaders, loaders, noParse: /\.elmx?$/ },
+        // { preLoaders, ..},
     module: { loaders, noParse: /\.elmx?$/ },
 
   plugins: [
