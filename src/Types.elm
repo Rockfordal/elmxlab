@@ -1,29 +1,32 @@
 port module Types exposing (..)
+
 import Http
+import Time exposing (Time, second)
+
 
 type alias Model =
-  { topic  : String
-  , gifUrl : String
-  , posts  : List String
-  -- , posts  : List Post
-  -- , post : Post
+  {
+    topic     : String
+  , gifUrl    : String
+  , post      : Post
+  , posts     : List Post
+  , postindex : Int
+  , counter   : Int
   }
 
 
 type alias Post =
-  { title : String
+  {
+    id      : Int
+  , title   : String
   , content : String
-  , id : Int
   }
 
 
 type Msg
   = MorePlease
-  | FetchSucceed (List String)
+  | FetchSucceed (List Post)
   | FetchFail Http.Error
   | UpdateTopic String
-  -- | Pang
-  -- | Texas
-  -- | Stöd
-  -- | Grillparty
-  -- | SetPost Int
+  | SetPost Int
+  | Tick Time

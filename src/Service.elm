@@ -1,37 +1,31 @@
 module Service exposing (..)
 
-import Types exposing (Model, Msg(..))
+import Types exposing (Model, Msg(..), Post)
 import Task exposing (Task)
--- import Json.Decode as Json
 import Json.Decode exposing (..)
 import Http
+import String
 
 
-getRandomGif : String -> Cmd Msg
-getRandomGif topic =
-  let
-    url =
-      -- "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" ++ topic
-       "http://labben.urkraft.se/wp-json/wp/v2/posts"
-  in
-    -- Task.perform FetchFail FetchSucceed (Http.get decodeGifUrl url)
-    Task.perform FetchFail FetchSucceed (Http.get decodePostUrl url)
+getPosts : Cmd Msg
+getPosts =
+  let url = "http://labben.urkraft.se/wp-json/wp/v2/posts"
+  in Task.perform FetchFail FetchSucceed (Http.get decodePostUrl url)
 
-postDecoder : Decoder String
+
+stringToInt : Decoder String -> Decoder Int
+stringToInt d =
+  customDecoder d String.toInt
+
+
+postDecoder : Decoder Post
 postDecoder =
-  at ["content", "rendered"] string
-  -- object1 identity ("full_name" := string)
+  object3 Post
+    (at ["id",      "rendered"] string |> stringToInt)
+    (at ["title",   "rendered"] string)
+    (at ["content", "rendered"] string)
 
-decodePostUrl : Decoder (List String)
+
+decodePostUrl : Decoder (List Post)
 decodePostUrl =
-  (list postDecoder)
-
-decodeGifUrl : Decoder String
-decodeGifUrl =
-  at ["data", "image_url"] string
-
--- point : Decoder (Float, Float)
--- point =
---     object2 (,)
---       ("x" := float)
---       ("y" := float)
+  list postDecoder

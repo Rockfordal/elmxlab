@@ -1,17 +1,42 @@
 module Viewmini exposing (..)
-import Types exposing (Model, Msg(..))
+import Types exposing (..)
 import Html exposing (..)
-import Html.Attributes exposing (..)
 import Markdown exposing (toHtml)
+import Html.Attributes exposing (..)
+import Html.Events exposing (onInput, onClick)
 
 
-postitem : String -> Html Msg
-postitem post =
+menyitem : Post -> Post -> Html Msg
+menyitem currentpost menupost =
   let
-    rawpost = Markdown.toHtml [] post
+    escapedtitle   = menupost.title
+    escapedcontent = menupost.content
+    titlehtml  = Markdown.toHtml [] escapedtitle
+    aktivklass =
+      if menupost.id == currentpost.id then
+        "active"
+      else
+        "notactive"
   in
     Html.div
       []
-      [ rawpost ]
+      [ li
+        [ class aktivklass]
+        [ a
+          [ href "#"
+          , onClick (SetPost menupost.id)
+          ]
+          [ titlehtml ]
+        ]
+      ]
 
--- [ Html.Attributes.attribute "class" "collection" ]
+
+postitem : Post -> Html Msg
+postitem post =
+  let
+    escapedcontent = post.content
+    contenthtml = Markdown.toHtml [] escapedcontent
+  in
+    Html.div
+      []
+      [ contenthtml ]
