@@ -3,9 +3,10 @@
   "private": true,
   "version": "2.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "dev": "webpack-dev-server -dw --hot --inline --port 3000 --config .webpack.babel.js",
+    "start": "electron .",
     "build": "webpack"
   },
   "author": "",
@@ -30,6 +31,7 @@
     "esnext": true
   },
   "dependencies": {
+    "electron-prebuilt": "^1.2.5",
     "jquery": "^3.0.0"
   }
 }

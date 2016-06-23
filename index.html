@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="src/assets/materialize.min.css">
+    <link rel="stylesheet" href="src/assets/css/main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>elm-webpack-loader example</title>
+  </head>
+    <body>
+        <!-- <script src="./src/assets/jquery.min.js"></script> -->
+
+        <!-- Web -->
+        <!-- <script src="./src/index.js"></script> -->
+        <!-- <script src="./elm.js"></script> -->
+
+        <!-- Electron -->
+        <script>
+          window.$ = window.jQuery = require('./src/assets/jquery.min.js');
+          window.Hammer = require('./src/assets/hammer.min.js');
+          window.Elm = require('./elm.js');
+
+          setTimeout(() => {
+              $(".button-collapse").sideNav();
+          }, 500);
+
+        </script>
+
+        <script src="./src/assets/materialize.min.js"></script>
+        <script> Elm.Main.fullscreen(); </script>
+    </body>
+</html>
