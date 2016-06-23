@@ -1,0 +1,92 @@
+[
+    {
+        "_links": {
+            "about": [
+                {
+                    "href": "http://labben.urkraft.se/wp-json/wp/v2/types/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "http://labben.urkraft.se/wp-json/wp/v2/users/2"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "http://labben.urkraft.se/wp-json/wp/v2/posts"
+                }
+            ],
+            "curies": [
+                {
+                    "href": "https://api.w.org/{rel}",
+                    "name": "wp",
+                    "templated": true
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "http://labben.urkraft.se/wp-json/wp/v2/comments?post=50"
+                }
+            ],
+            "self": [
+                {
+                    "href": "http://labben.urkraft.se/wp-json/wp/v2/posts/50"
+                }
+            ],
+            "version-history": [
+                {
+                    "href": "http://labben.urkraft.se/wp-json/wp/v2/posts/50/revisions"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "http://labben.urkraft.se/wp-json/wp/v2/media?parent=50"
+                }
+            ],
+            "wp:term": [
+                {
+                    "embeddable": true,
+                    "href": "http://labben.urkraft.se/wp-json/wp/v2/categories?post=50",
+                    "taxonomy": "category"
+                },
+                {
+                    "embeddable": true,
+                    "href": "http://labben.urkraft.se/wp-json/wp/v2/tags?post=50",
+                    "taxonomy": "post_tag"
+                }
+            ]
+        },
+        "author": 2,
+        "categories": [
+            1
+        ],
+        "comment_status": "open",
+        "content": {
+            "rendered": "<p>Hej Tjohej Tjohej</p>\n<p>Som en boll kommer jag till bak till <strong>dig</strong></p>\n"
+        },
+        "date": "2016-06-21T14:11:15",
+        "date_gmt": "2016-06-21T12:11:15",
+        "excerpt": {
+            "rendered": "<p>Hej Tjohej Tjohej Som en boll kommer jag till bak till dig</p>\n"
+        },
+        "featured_media": 0,
+        "format": "standard",
+        "guid": {
+            "rendered": "/?p=50"
+        },
+        "id": 50,
+        "link": "/okategoriserade/texas/",
+        "modified": "2016-06-21T15:05:24",
+        "modified_gmt": "2016-06-21T13:05:24",
+        "ping_status": "open",
+        "slug": "texas",
+        "sticky": false,
+        "tags": [],
+        "title": {
+            "rendered": "Texas"
+        },
+        "type": "post"
+    },
+]
