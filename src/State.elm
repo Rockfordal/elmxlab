@@ -41,7 +41,10 @@ update msg model =
         ({ model | posts = posts }, Cmd.none)
 
     FetchFail _ ->
-      (model, Cmd.none)
+      let
+        logga = log "error" ""
+      in
+        (model, Cmd.none)
 
     UpdateTopic topic ->
       ({model | topic = topic}, Cmd.none)

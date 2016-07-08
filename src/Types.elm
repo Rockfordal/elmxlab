@@ -20,8 +20,20 @@ type alias Post =
     id      : Int
   , title   : String
   , content : String
+  , author  : String
+  , user_id : Int
+  , year    : Int
   }
 
+-- type alias Book =
+--   {
+--     id      : Int
+--   , title   : String
+--   , content : String
+--   -- , author  : String
+--   -- , user_id : Int
+--   -- , year : Int
+--   }
 
 type Msg
   = MorePlease
