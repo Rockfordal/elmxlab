@@ -9,31 +9,63 @@ view : Model -> Html Msg
 view model =
   let
     menyer = List.map (menyitem model.shelf) model.shelfs
-    shelfcontent = shelfitem model.shelf
     -- tid = toString model.interval
   in
     <div>
-      <nav>
-        <div class="nav-wrapper">
-          <a href="#!" class="brand-logo">Logo</a>
-          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-          <ul id="slide-out" class="side-nav fixed">
-            {:menyer}
-          </ul>
-          <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-          <ul class="side-nav" id="mobile-demo">
-            {:menyer}
-          </ul>
-        </div>
-      </nav>
+          <nav>
+            <div class="nav-wrapper brown darken-2">
+              <a href="#!" class="brand-logo">Nice Rack</a>
+              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+              <ul id="slide-out" class="side-nav">
 
-      <div class="row">
-        <div class="col l6 offset-l3">
-          {shelfcontent}
-        </div>
+              </ul>
+              <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+              <ul class="side-nav" id="mobile-demo">
+
+              </ul>
+            </div>
+          </nav>
+        <div class="container">
+          <div class="row">
+            <div class="collection">
+              <div class="card">
+                <div class="input-field col col l5 m4 s4" id="hylla 1">
+                  <input disabled=true value="A01" id="disabled" type="text" class="validate">
+                  <label for="disabled">Namn</label>
+                </div>
+                <div class="input-field col col l5 m4 s4">
+                  <input disabled=true value="20" id="disabled" type="text" class="validate">
+                  <label for="disabled">Storlek</label>
+                </div>
+              </div>
+              <div class="input-field col l1 m2 s2">
+                <i class="small material-icons">mode_edit</i>
+              </div>
+              <div class="input-field col l1 m2 s2">
+                <i class="small material-icons">delete</i>
+              </div>
+          </div>
+            <div class="collection">
+              <div class="card">
+                <div class="input-field col l5 m4 s4" id="hylla 2">
+                  <input disabled=true value="A02" id="disabled" type="text" class="validate">
+                  <label for="disabled">Namn</label>
+                </div>
+                  <div class="input-field col l5 m4 s4">
+                    <input disabled=true value="10" id="disabled" type="text" class="validate">
+                    <label for="disabled">Storlek</label>
+                  </div>
+              </div>
+                  <div class="input-field col l1 m2 s2">
+                    <i class="small material-icons">mode_edit</i>
+                  </div>
+                  <div class="input-field col l1 m2 s2">
+                    <i class="small material-icons">delete</i>
+                  </div>
+            </div>
+            </div>
+              <a class="fixed-action-btn" style="bottom: 45px; right: 24px;"><a class="btn-floating btn-large teal darken-4">
+                <i class="large material-icons">add</i>
+              </a>
       </div>
     </div>
-
--- {= (toString model.counter) }
--- <br/>
--- {= (toString model.shelfindex) }

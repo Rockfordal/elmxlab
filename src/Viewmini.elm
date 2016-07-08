@@ -40,5 +40,5 @@ shelfitem shelf =
   -- in
     Html.div
       []
-      [ text shelf.name ]
+      [ text (shelf.name ++ " hyllstorlek " ++ toString shelf.size)]
       -- [ contenthtml ]

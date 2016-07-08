@@ -3,5 +3,7 @@ nav {
 }
 #slide-out {
   margin-top: 64px;
-  background-color: rgba(255, 121, 0, 0.5)!important;
+}
+input#disabled.validate {
+  padding-top: 1px;
 }
