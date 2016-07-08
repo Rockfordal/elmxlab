@@ -3,6 +3,7 @@ import Types exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Viewmini exposing (shelfitem, menyitem)
+import Views.Items exposing (..)
 
 
 view : Model -> Html Msg
@@ -26,7 +27,8 @@ view model =
             ]
           ]
         , Html.div [Html.Attributes.attribute "class" "container"] [
-          Html.div [Html.Attributes.attribute "class" "row"] [
+          Html.h3 [] [Html.text "Hyllor"]
+          , Html.div [Html.Attributes.attribute "class" "row"] [
             Html.div [Html.Attributes.attribute "class" "collection"] [
               Html.div [Html.Attributes.attribute "class" "card"] [
                 Html.div [Html.Attributes.attribute "class" "input-field col col l5 m4 s4", Html.Attributes.attribute "id" "hylla 1"] [
@@ -64,8 +66,9 @@ view model =
                   ]
             ]
             ]
-              , Html.a [Html.Attributes.attribute "class" "fixed-action-btn", Html.Attributes.attribute "style" "bottom: 45px; right: 24px;"] [Html.a [Html.Attributes.attribute "class" "btn-floating btn-large teal darken-4"] [
+              , Html.a [Html.Attributes.attribute "class" "fixed-action-btn", Html.Attributes.attribute "style" "bottom: 15px; right: 10px;"] [Html.a [Html.Attributes.attribute "class" "btn-floating btn-large teal darken-4"] [
                 Html.i [Html.Attributes.attribute "class" "large material-icons"] [Html.text "add"]
               ]
       ]]
+        , itemview model
     ]

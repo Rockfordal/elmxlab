@@ -21,6 +21,13 @@ type alias Shelf =
   , size    : Int
   }
 
+type alias Item =
+  {
+    id      : Int
+  , name    : String
+  , info    : String
+  }
+
 -- type alias Post =
 --   {
 --     id      : Int

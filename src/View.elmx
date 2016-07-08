@@ -3,6 +3,7 @@ import Types exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Viewmini exposing (shelfitem, menyitem)
+import Views.Items exposing (..)
 
 
 view : Model -> Html Msg
@@ -26,6 +27,7 @@ view model =
             </div>
           </nav>
         <div class="container">
+          <h3>Hyllor</h3>
           <div class="row">
             <div class="collection">
               <div class="card">
@@ -64,8 +66,9 @@ view model =
                   </div>
             </div>
             </div>
-              <a class="fixed-action-btn" style="bottom: 45px; right: 24px;"><a class="btn-floating btn-large teal darken-4">
+              <a class="fixed-action-btn" style="bottom: 15px; right: 10px;"><a class="btn-floating btn-large teal darken-4">
                 <i class="large material-icons">add</i>
               </a>
       </div>
+        {itemview model}
     </div>
