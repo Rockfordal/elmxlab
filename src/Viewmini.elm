@@ -6,14 +6,14 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (onInput, onClick)
 
 
-menyitem : Post -> Post -> Html Msg
-menyitem currentpost menupost =
+menyitem : Shelf -> Shelf -> Html Msg
+menyitem currentshelf menushelf =
   let
-    escapedtitle   = menupost.title
-    escapedcontent = menupost.content
-    titlehtml  = Markdown.toHtml [] escapedtitle
+    -- escapedtitle   = menushelf.title
+    -- escapedcontent = menushelf.content
+    -- titlehtml  = Markdown.toHtml [] escapedtitle
     aktivklass =
-      if menupost.id == currentpost.id then
+      if menushelf.id == currentshelf.id then
         "active"
       else
         "notactive"
@@ -24,19 +24,21 @@ menyitem currentpost menupost =
         [ class aktivklass]
         [ a
           [ href "#"
-          , onClick (SetPost menupost.id)
+          , onClick (SetShelf menushelf.id)
           ]
-          [ titlehtml ]
+          [ text menushelf.name ]
+          -- [ titlehtml ]
         ]
       ]
 
 
-postitem : Post -> Html Msg
-postitem post =
-  let
-    escapedcontent = post.content
-    contenthtml = Markdown.toHtml [] escapedcontent
-  in
+shelfitem : Shelf -> Html Msg
+shelfitem shelf =
+  -- let
+    -- escapedcontent = shelf.name
+    -- contenthtml = Markdown.toHtml [] escapedcontent
+  -- in
     Html.div
       []
-      [ contenthtml ]
+      [ text shelf.name ]
+      -- [ contenthtml ]

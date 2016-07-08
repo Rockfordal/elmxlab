@@ -2,14 +2,14 @@ module View exposing (..)
 import Types exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Viewmini exposing (postitem, menyitem)
+import Viewmini exposing (shelfitem, menyitem)
 
 
 view : Model -> Html Msg
 view model =
   let
-    menyer = List.map (menyitem model.post) model.posts
-    postcontent = postitem model.post
+    menyer = List.map (menyitem model.shelf) model.shelfs
+    shelfcontent = shelfitem model.shelf
     -- tid = toString model.interval
   in
     Html.div [] [
@@ -29,12 +29,11 @@ view model =
 
       , Html.div [Html.Attributes.attribute "class" "row"] [
         Html.div [Html.Attributes.attribute "class" "col l6 offset-l3"] [
-          postcontent
+          shelfcontent
         ]
       ]
     ]
 
-
-          -- {= (toString model.counter) }
-          -- Html.br [] []
-          -- {= (toString model.postindex) }
+-- {= (toString model.counter) }
+-- Html.br [] []
+-- {= (toString model.shelfindex) }

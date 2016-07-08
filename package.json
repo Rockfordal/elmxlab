@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server -dw --hot --inline --host fire.solidcrm.se --port 8000 --config .webpack.babel.js",
+    "dev": "webpack-dev-server -dw --hot --inline --host localhost --port 8000 --config .webpack.babel.js",
     "build": "webpack"
   },
   "author": "",

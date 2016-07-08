@@ -6,39 +6,35 @@ import Time exposing (Time, second)
 
 type alias Model =
   {
-    topic     : String
-  , gifUrl    : String
-  , post      : Post
-  , posts     : List Post
-  , postindex : Int
-  , counter   : Int
+    topic      : String
+  , gifUrl     : String
+  , shelf      : Shelf
+  , shelfs     : List Shelf
+  , shelfindex : Int
+  , counter    : Int
   }
 
-
-type alias Post =
+type alias Shelf =
   {
     id      : Int
-  , title   : String
-  , content : String
-  , author  : String
-  , user_id : Int
-  , year    : Int
+  , name    : String
+  , size    : Int
   }
 
--- type alias Book =
+-- type alias Post =
 --   {
 --     id      : Int
 --   , title   : String
 --   , content : String
---   -- , author  : String
---   -- , user_id : Int
---   -- , year : Int
+--   , author  : String
+--   , user_id : Int
+--   , year    : Int
 --   }
 
 type Msg
   = MorePlease
-  | FetchSucceed (List Post)
+  | FetchSucceed (List Shelf)
   | FetchFail Http.Error
   | UpdateTopic String
-  | SetPost Int
+  | SetShelf Int
   | Tick Time

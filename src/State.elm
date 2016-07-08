@@ -1,9 +1,9 @@
 module State exposing (..)
 
 import Types exposing (Model, Msg(..))
-import Service exposing (getPosts)
+import Service exposing (getShelfs)
 import Debug exposing (log)
-import Data exposing (p1, p2, p3)
+import Data exposing (s1)
 import Maybe exposing (withDefault)
 import Array exposing (fromList, get)
 
@@ -12,17 +12,17 @@ initialModel : String -> Model
 initialModel topic =
   { topic = topic
   , gifUrl = ""
-  , posts = [p1, p2, p3]
-  , post = p1
+  , shelfs = [s1]
+  , shelf = s1
+  , shelfindex = 0
   , counter = 0
-  , postindex = 0
   }
 
 
 init : String -> ( Model, Cmd Msg )
 init topic =
-  (  initialModel topic
-  , getPosts
+  ( initialModel topic
+  , getShelfs
   )
 
 
@@ -31,14 +31,14 @@ update msg model =
   case msg of
     MorePlease ->
       ( model
-      , getPosts
+      , getShelfs
       )
 
-    FetchSucceed posts ->
+    FetchSucceed shelfs ->
       let
-        logga = log "succes" posts
+        logga = log "succes" shelfs
       in
-        ({ model | posts = posts }, Cmd.none)
+        ({ model | shelfs = shelfs }, Cmd.none)
 
     FetchFail _ ->
       let
@@ -49,23 +49,23 @@ update msg model =
     UpdateTopic topic ->
       ({model | topic = topic}, Cmd.none)
 
-    SetPost id ->
+    SetShelf id ->
       let
-        nylista = (List.filter (\p -> p.id == id) model.posts)
-        mabynewpost = (List.head nylista)
-        newpost = withDefault model.post (List.head nylista)
+        nylista = (List.filter (\p -> p.id == id) model.shelfs)
+        mabynewshelf = (List.head nylista)
+        newshelf = withDefault model.shelf (List.head nylista)
       in
-        ({ model | post = newpost }, Cmd.none)
+        ({ model | shelf = newshelf }, Cmd.none)
 
     -- Tick newTime ->
     --   let
-    --     indexid = nextid model.interval (List.length model.posts)
-    --     posts = fromList model.posts
-    --     post = withDefault model.post (get indexid posts)
+    --     indexid = nextid model.interval (List.length model.shelfs)
+    --     shelfs = fromList model.shelfs
+    --     shelf = withDefault model.shelf (get indexid shelfs)
     --   in
     --     if model.interval < 3 then
     --       ( { model | interval = indexid
-    --                 , post     = post }
+    --                 , shelf     = shelf }
     --       , Cmd.none)
     --     else
     --       (model, Cmd.none)
@@ -73,17 +73,17 @@ update msg model =
     Tick newTime ->
       let
         updateInterval = 3
-        postlength = List.length model.posts
+        shelflength = List.length model.shelfs
         willupdate = model.counter % updateInterval == 0
-        indexid = nextid model.postindex postlength
-        posts = fromList model.posts
-        post = withDefault model.post (get indexid posts)
+        indexid = nextid model.shelfindex shelflength
+        shelfs = fromList model.shelfs
+        shelf = withDefault model.shelf (get indexid shelfs)
         -- logga = log "indexid" indexid
       in
         if willupdate then
           ( { model | counter   = model.counter + 1
-                    , post      = post
-                    , postindex = indexid }
+                    , shelf      = shelf
+                    , shelfindex = indexid }
           , Cmd.none)
         else
           ({ model | counter = model.counter + 1 }
