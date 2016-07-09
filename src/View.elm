@@ -6,11 +6,14 @@ import Html.Events exposing (on, targetValue, onClick, onInput, onSubmit, onWith
 import Json.Decode as Json
 import Routes exposing (Sitemap(..))
 import Types exposing (Model, Msg(..))
-import Item.View exposing (viewItems)
 import Debug exposing (log)
 import Views.Navbar exposing (viewNavbar)
-import Item.Views.AddModal exposing (addItemModal)
-import Item.Views.EditModal exposing (editItemModal)
+-- import Views.Layout exposing (..)
+import Views.Shelfs exposing (..)
+import Views.Items exposing (..)
+-- import Item.View exposing (viewItems)
+-- import Item.Views.AddModal exposing (addItemModal)
+-- import Item.Views.EditModal exposing (editItemModal)
 
 
 notFound : Html Msg
@@ -21,7 +24,6 @@ about : Model -> Html Msg
 about model =
     h1 [] [ text "About" ]
 
-
 home : Model -> Html Msg
 home model =
     let
@@ -30,7 +32,7 @@ home model =
                 [ input
                     [ type' "text"
                     , id "search"
-                    , onInput UpdateSearch
+                    -- , onInput UpdateSearch
                     ]
                     []
                 , label [ for "search" ]
@@ -47,13 +49,13 @@ home model =
                 , ul [ class "dropdown-content", id "dropdown1" ]
                     [ li []
                         [ a [ href "#!"
-                            , onClick (Sortby "title")
+                            -- , onClick (Sortby "title")
                             ]
                             [ text "Titel" ]
                         ]
                     , li []
                         [ a [ href "#!"
-                            , onClick (Sortby "url")
+                            -- , onClick (Sortby "url")
                             ]
                             [ text "Url" ]
                         ]
@@ -61,7 +63,7 @@ home model =
                         []
                     , li []
                         [ a [ href "#!"
-                            , onClick (Sortby "timestamp")
+                            -- , onClick (Sortby "timestamp")
                             ]
                             [ text "Datum" ]
                         ]
@@ -72,7 +74,7 @@ home model =
             div [class "col"]
                 [ a [ href "#!"]
                   [ i [ class "material-icons"
-                      , onClick (Sortdir (invertdir dir))
+                      -- , onClick (Sortdir (invertdir dir))
                       ]
                       [ text (diricon dir)
                       ]
@@ -85,7 +87,7 @@ home model =
                 , class
                     ("btn-floating waves-effect waves-light modal-trigger grey right")
 
-                , onClick (ClearItem)
+                -- , onClick (ClearItem)
                 ]
                 [ i [ class "material-icons" ]
                     [ text "add" ]
@@ -96,11 +98,11 @@ home model =
         , div [ class "row" ]
             [ addButton
             , orderBox
-            , dirBox model.sortdir
+            , dirBox "asc" --  model.sortdir
             ]
-        , viewItems model.items
-        , addItemModal model.item
-        , editItemModal model.item
+        -- , viewItems model.items
+        -- , addItemModal model.item
+        -- , editItemModal model.item
         ]
         -- , p [] [ link (PostR 123) "This post does not exist" ]
 
@@ -140,6 +142,8 @@ view model =
                       AboutR () ->
                           about model
 
+                      ShelfR () ->
+                          shelfsview model
                       NotFoundR ->
                           notFound
                 ]

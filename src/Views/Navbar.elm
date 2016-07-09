@@ -49,7 +49,8 @@ viewNavbar =
                   [ text "GrELMthinkDB" ]
               , ul [ class "right hide-on-med-and-down" ]
 
-                  [ li [] [ link (HomeR ()) "Home" ]
+                  [ li [] [ link (HomeR  ()) "Hem" ]
+                  , li [] [ link (ShelfR ()) "Hyllor" ]
                   , li [] [ link (AboutR ()) "About" ]
                  , li []
                       [ a [ class "dropdown-button", attribute "data-activates" "dropdown0", href "#!" ]

@@ -7,6 +7,7 @@ import Route exposing (..)
 type Sitemap
     = HomeR ()
     | AboutR ()
+    | ShelfR ()
     | NotFoundR
 
 
@@ -17,9 +18,12 @@ homeR =
 aboutR =
     AboutR := static "about"
 
+shelfR =
+    ShelfR := static "shelfs"
+
 
 sitemap =
-    router [ homeR, aboutR ]
+    router [ homeR, aboutR, shelfR ]
 
 
 match : String -> Sitemap
@@ -37,6 +41,9 @@ toString r =
         AboutR () ->
             reverse aboutR []
 
+        ShelfR () ->
+            reverse shelfR []
+
         NotFoundR ->
             Debug.crash "cannot render NotFound"
 
@@ -49,4 +56,3 @@ parsePath =
 navigateTo : Sitemap -> Cmd msg
 navigateTo =
     toString >> Navigation.newUrl
-

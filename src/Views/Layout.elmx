@@ -10,7 +10,7 @@ navlinks =
     <li><a href="#">Hyllor</a></li>
     <li><a href="#">Items</a></li>
   </div>
-    
+
 navview : Model -> Html Msg
 navview model =
   <nav>
