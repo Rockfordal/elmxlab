@@ -1,10 +1,9 @@
 module Main exposing (main)
-
 import Navigation
 import Routes
 import State exposing (update, urlUpdate, init)
 import Types exposing (Model, Msg)
-import View exposing (view)
+import Views.View exposing (view)
 -- import Time exposing (every, second)
 
 main : Program Never

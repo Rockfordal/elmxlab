@@ -1,4 +1,4 @@
-module View exposing (..) -- (view)
+module Views.View exposing (..) -- (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..) -- (href)
@@ -7,8 +7,8 @@ import Json.Decode as Json
 import Routes exposing (Sitemap(..))
 import Types exposing (Model, Msg(..))
 import Debug exposing (log)
-import Views.Shelfs exposing (..)
-import Views.Items exposing (..)
+import Views.Shelfs exposing (shelfsview)
+import Views.Items exposing (itemsview)
 import Views.Home exposing (..)
 import Views.Navbar exposing (viewNavbar)
 -- import Views.Layout exposing (..)
@@ -23,7 +23,7 @@ notFound =
 
 about : Model -> Html Msg
 about model =
-    h1 [] [ text "About" ]
+    h1 [] [ text "About mig" ]
 
 view : Model -> Html Msg
 view model =
