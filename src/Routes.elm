@@ -8,22 +8,16 @@ type Sitemap
     = HomeR ()
     | AboutR ()
     | ShelfR ()
+    | ItemR ()
     | NotFoundR
 
 
-homeR =
-    HomeR := static ""
+homeR  = HomeR  := static ""
+aboutR = AboutR := static "about"
+shelfR = ShelfR := static "shelfs"
+itemR  = ItemR  := static "items"
 
-
-aboutR =
-    AboutR := static "about"
-
-shelfR =
-    ShelfR := static "shelfs"
-
-
-sitemap =
-    router [ homeR, aboutR, shelfR ]
+sitemap = router [ homeR, aboutR, shelfR, itemR ]
 
 
 match : String -> Sitemap
@@ -43,6 +37,9 @@ toString r =
 
         ShelfR () ->
             reverse shelfR []
+
+        ItemR () ->
+            reverse itemR []
 
         NotFoundR ->
             Debug.crash "cannot render NotFound"

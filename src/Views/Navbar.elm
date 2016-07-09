@@ -51,6 +51,7 @@ viewNavbar =
 
                   [ li [] [ link (HomeR  ()) "Hem" ]
                   , li [] [ link (ShelfR ()) "Hyllor" ]
+                  , li [] [ link (ItemR  ()) "Items" ]
                   , li [] [ link (AboutR ()) "About" ]
                  , li []
                       [ a [ class "dropdown-button", attribute "data-activates" "dropdown0", href "#!" ]

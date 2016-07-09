@@ -144,6 +144,10 @@ view model =
 
                       ShelfR () ->
                           shelfsview model
+
+                      ItemR () ->
+                          itemsview model
+
                       NotFoundR ->
                           notFound
                 ]
