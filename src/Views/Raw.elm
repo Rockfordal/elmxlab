@@ -1,4 +1,4 @@
-module Viewmini exposing (..)
+module View.Raw exposing (..)
 import Types exposing (..)
 import Html exposing (..)
 import Markdown exposing (toHtml)
