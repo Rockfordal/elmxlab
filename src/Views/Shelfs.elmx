@@ -1,0 +1,49 @@
+module Views.Shelfs exposing (..)
+import Types exposing (..)
+import Html exposing (..)
+import Html.Attributes exposing (..)
+import Html.Events exposing (..)
+
+
+shelfview : Shelf -> Html Msg
+shelfview shelf =
+  <div>
+    <div class="card">
+      <div class="input-field col col l5 m4 s4" id="hylla 1">
+        <input disabled=true value={shelf.name} id="disabled" type="text" class="validate">
+        <label for="disabled">Namn</label>
+      </div>
+      <div class="input-field col col l5 m4 s4">
+        <input disabled=true value={toString shelf.size} id="disabled" type="text" class="validate">
+        <label for="disabled">Storlek</label>
+      </div>
+        <div class="input-field col l1 m2 s2">
+          <i class="small material-icons">mode_edit</i>
+        </div>
+        <div class="input-field col l1 m2 s2">
+          <a href="#" onClick={DeleteShelf shelf.id}> <i class="small material-icons">delete</i> </a>
+        </div>
+    </div>
+  </div>
+
+shelfsview : Model -> Html Msg
+shelfsview model =
+  let
+     shelfs = List.map shelfview model.shelfs
+  in
+  <div class="container">
+    <h3>Hyller</h3>
+    <div class="row">
+      {:shelfs}
+      {addButton}
+    </div>
+  </div>
+
+addButton : Html msg
+addButton =
+  <div>
+    <a class="fixed-action-btn" style="bottom: 15px; right: 10px;"><a class="btn-floating btn-large teal darken-4">
+      <i class="large material-icons">add</i>
+    </a>
+  </div>
+  -- <button onClick={AddShelf}>sdfsd</button>
