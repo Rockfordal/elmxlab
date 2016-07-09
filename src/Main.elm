@@ -4,7 +4,7 @@ import State exposing (init, update)
 import Types exposing (Model, Msg(..))
 import View  exposing (view)
 import Html.App exposing (program)
-import Time exposing (every, second)
+-- import Time exposing (every, second)
 
 main : Program Never
 main =
@@ -18,6 +18,6 @@ main =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-  every second Tick
-  -- Sub.none
+  -- every second Tick
+  Sub.none
   -- Sub.batch []

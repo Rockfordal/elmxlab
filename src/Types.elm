@@ -11,6 +11,7 @@ type alias Model =
   , shelf      : Shelf
   , shelfs     : List Shelf
   , shelfindex : Int
+  , items      : List Item
   , counter    : Int
   }
 
@@ -28,20 +29,11 @@ type alias Item =
   , info    : String
   }
 
--- type alias Post =
---   {
---     id      : Int
---   , title   : String
---   , content : String
---   , author  : String
---   , user_id : Int
---   , year    : Int
---   }
-
 type Msg
   = MorePlease
-  | FetchSucceed (List Shelf)
+  | FetchShelfSucceed (List Shelf)
+  | FetchItemSucceed (List Item)
   | FetchFail Http.Error
   | UpdateTopic String
   | SetShelf Int
-  | Tick Time
+  -- | Tick Time

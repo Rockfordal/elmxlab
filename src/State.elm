@@ -3,7 +3,7 @@ module State exposing (..)
 import Types exposing (Model, Msg(..))
 import Service exposing (getShelfs)
 import Debug exposing (log)
-import Data exposing (s1)
+import Data exposing (s1, i1)
 import Maybe exposing (withDefault)
 import Array exposing (fromList, get)
 
@@ -15,6 +15,7 @@ initialModel topic =
   , shelfs = [s1]
   , shelf = s1
   , shelfindex = 0
+  , items = [i1]
   , counter = 0
   }
 
@@ -34,11 +35,11 @@ update msg model =
       , getShelfs
       )
 
-    FetchSucceed shelfs ->
-      let
-        logga = log "succes" shelfs
-      in
+    FetchShelfSucceed shelfs ->
         ({ model | shelfs = shelfs }, Cmd.none)
+
+    FetchItemSucceed items ->
+        ({ model | items = items }, Cmd.none)
 
     FetchFail _ ->
       let
@@ -59,35 +60,22 @@ update msg model =
 
     -- Tick newTime ->
     --   let
-    --     indexid = nextid model.interval (List.length model.shelfs)
+    --     updateInterval = 3
+    --     shelflength = List.length model.shelfs
+    --     willupdate = model.counter % updateInterval == 0
+    --     indexid = nextid model.shelfindex shelflength
     --     shelfs = fromList model.shelfs
     --     shelf = withDefault model.shelf (get indexid shelfs)
+    --     -- logga = log "indexid" indexid
     --   in
-    --     if model.interval < 3 then
-    --       ( { model | interval = indexid
-    --                 , shelf     = shelf }
+    --     if willupdate then
+    --       ( { model | counter   = model.counter + 1
+    --                 , shelf      = shelf
+    --                 , shelfindex = indexid }
     --       , Cmd.none)
     --     else
-    --       (model, Cmd.none)
-
-    Tick newTime ->
-      let
-        updateInterval = 3
-        shelflength = List.length model.shelfs
-        willupdate = model.counter % updateInterval == 0
-        indexid = nextid model.shelfindex shelflength
-        shelfs = fromList model.shelfs
-        shelf = withDefault model.shelf (get indexid shelfs)
-        -- logga = log "indexid" indexid
-      in
-        if willupdate then
-          ( { model | counter   = model.counter + 1
-                    , shelf      = shelf
-                    , shelfindex = indexid }
-          , Cmd.none)
-        else
-          ({ model | counter = model.counter + 1 }
-           , Cmd.none)
+    --       ({ model | counter = model.counter + 1 }
+    --        , Cmd.none)
 
 
 nextid : Int -> Int -> Int

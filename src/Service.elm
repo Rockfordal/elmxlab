@@ -1,22 +1,25 @@
 module Service exposing (..)
 
-import Types exposing (Model, Msg(..), Shelf)
+import Types exposing (Model, Msg(..), Shelf, Item)
 import Task exposing (Task)
 import Json.Decode exposing (..)
 import Http
 import String
 
-
-getShelfs : Cmd Msg
-getShelfs =
-  -- let url = "http://labben.urkraft.se/wp-json/wp/v2/posts"
-  let url = "http://fire.solidcrm.se:3000/shelfs"
-  in Task.perform FetchFail FetchSucceed (Http.get decodeShelfUrl url)
-
-
 stringToInt : Decoder String -> Decoder Int
 stringToInt d =
   customDecoder d String.toInt
+
+
+getShelfs : Cmd Msg
+getShelfs =
+  let url = "http://fire.solidcrm.se:3000/shelfs"
+  in Task.perform FetchFail FetchShelfSucceed (Http.get decodeShelfUrl url)
+
+getItems : Cmd Msg
+getItems =
+  let url = "http://fire.solidcrm.se:3000/items"
+  in Task.perform FetchFail FetchItemSucceed (Http.get decodeItemUrl url)
 
 
 shelfDecoder : Decoder Shelf
@@ -26,7 +29,18 @@ shelfDecoder =
     (at ["name"] string)
     (at ["size"] int)
 
+itemDecoder : Decoder Item
+itemDecoder =
+  object3 Item
+    (at ["id"]   int)
+    (at ["name"] string)
+    (at ["info"] string)
+
 
 decodeShelfUrl : Decoder (List Shelf)
 decodeShelfUrl =
   list shelfDecoder
+
+decodeItemUrl : Decoder (List Item)
+decodeItemUrl =
+  list itemDecoder
