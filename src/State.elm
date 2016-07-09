@@ -30,11 +30,6 @@ init topic =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
   case msg of
-    MorePlease ->
-      ( model
-      , getShelfs
-      )
-
     FetchShelfSucceed shelfs ->
         ({ model | shelfs = shelfs }, Cmd.none)
 

@@ -30,8 +30,7 @@ type alias Item =
   }
 
 type Msg
-  = MorePlease
-  | FetchShelfSucceed (List Shelf)
+  = FetchShelfSucceed (List Shelf)
   | FetchItemSucceed (List Item)
   | FetchFail Http.Error
   | UpdateTopic String
