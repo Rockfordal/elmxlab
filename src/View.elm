@@ -1,17 +1,19 @@
 module View exposing (..)
+
 import Types exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Viewmini exposing (shelfitem, menyitem)
-import Views.Items exposing (..)
+import Views.Layout exposing (..)
 import Views.Shelfs exposing (..)
+import Views.Items exposing (..)
+-- import Views.Raw exposing (shelfitem, menyitem)
 
 
 view : Model -> Html Msg
 view model =
   let
-    menyer = List.map (menyitem model.shelf) model.shelfs
-    -- tid = toString model.interval
+      a = 1
+      -- menyer = List.map (menyitem model.shelf) model.shelfs
   in
     Html.div [] [
           Html.nav [] [
@@ -19,11 +21,9 @@ view model =
               Html.a [Html.Attributes.attribute "href" "#!", Html.Attributes.attribute "class" "brand-logo"] [Html.text "Nice Rack"]
               , Html.a [Html.Attributes.attribute "href" "#", Html.Attributes.attribute "data-activates" "mobile-demo", Html.Attributes.attribute "class" "button-collapse"] [Html.i [Html.Attributes.attribute "class" "material-icons"] [Html.text "menu"]]
               , Html.ul [Html.Attributes.attribute "id" "slide-out", Html.Attributes.attribute "class" "side-nav"] [
-
               ]
               , Html.a [Html.Attributes.attribute "href" "#", Html.Attributes.attribute "data-activates" "slide-out", Html.Attributes.attribute "class" "button-collapse"] [Html.i [Html.Attributes.attribute "class" "mdi-navigation-menu"] []]
               , Html.ul [Html.Attributes.attribute "class" "side-nav", Html.Attributes.attribute "id" "mobile-demo"] [
-
               ]
             ]
           ]
