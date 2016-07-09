@@ -7,11 +7,11 @@ import Json.Decode as Json
 import Routes exposing (Sitemap(..))
 import Types exposing (Model, Msg(..))
 import Debug exposing (log)
-import Views.Navbar exposing (viewNavbar)
--- import Views.Layout exposing (..)
 import Views.Shelfs exposing (..)
 import Views.Items exposing (..)
 import Views.Home exposing (..)
+import Views.Navbar exposing (viewNavbar)
+-- import Views.Layout exposing (..)
 -- import Item.View exposing (viewItems)
 -- import Item.Views.AddModal exposing (addItemModal)
 -- import Item.Views.EditModal exposing (editItemModal)
@@ -29,26 +29,16 @@ view : Model -> Html Msg
 view model =
     let
         navBar = viewNavbar
-
     in
         div []
             [ navBar
             , div [ class "container"]
                   [
                     case model.route of
-                      HomeR () ->
-                          home model
-
-                      AboutR () ->
-                          about model
-
-                      ShelfR () ->
-                          shelfsview model
-
-                      ItemR () ->
-                          itemsview model
-
-                      NotFoundR ->
-                          notFound
+                      HomeR ()  -> home model
+                      AboutR () -> about model
+                      ShelfR () -> shelfsview model
+                      ItemR ()  -> itemsview model
+                      NotFoundR -> notFound
                 ]
             ]
