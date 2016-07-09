@@ -1,11 +1,11 @@
 module State exposing (..)
 
-import Types exposing (Model, Msg(..))
+import Types   exposing (Model, Msg(..))
 import Service exposing (getShelfs)
-import Debug exposing (log)
-import Data exposing (s1, i1)
-import Maybe exposing (withDefault)
-import Array exposing (fromList, get)
+import Debug   exposing (log)
+import Data    exposing (s1, i1)
+import Maybe   exposing (withDefault)
+import Array   exposing (fromList, get)
 
 
 initialModel : Model
