@@ -17,11 +17,6 @@ view model =
   in
     <div>
       {navview model}
-        <div class="container">
-              <a class="fixed-action-btn" style="bottom: 15px; right: 10px;"><a class="btn-floating btn-large teal darken-4">
-                <i class="large material-icons">add</i>
-              </a>
-      </div>
-        {shelfsview model}
-        {itemsview model}
+      {shelfsview model}
+      {itemsview model}
     </div>

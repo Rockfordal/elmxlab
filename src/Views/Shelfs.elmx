@@ -35,5 +35,15 @@ shelfsview model =
     <h3>Hyller</h3>
     <div class="row">
       {:shelfs}
+      {addButton}
     </div>
   </div>
+
+addButton : Html msg
+addButton =
+  <div>
+    <a class="fixed-action-btn" style="bottom: 15px; right: 10px;"><a class="btn-floating btn-large teal darken-4">
+      <i class="large material-icons">add</i>
+    </a>
+  </div>
+  -- <button onClick={AddShelf}>sdfsd</button>
