@@ -45,6 +45,11 @@ update msg model =
       in
         ({ model | shelf = newshelf }, Cmd.none)
 
+    DeleteShelf id ->
+      let
+        krille = "bäst"
+      in
+        (model, Cmd.none)
     -- Tick newTime ->
     --   let
     --     updateInterval = 3

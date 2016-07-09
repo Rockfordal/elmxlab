@@ -1,7 +1,7 @@
 port module Types exposing (..)
 
 import Http
-import Time exposing (Time, second)
+-- import Time exposing (Time, second)
 
 
 type alias Model =
@@ -30,4 +30,5 @@ type Msg
   | FetchItemSucceed (List Item)
   | FetchFail Http.Error
   | SetShelf Int
+  | DeleteShelf Int
   -- | Tick Time
