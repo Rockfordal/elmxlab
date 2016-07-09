@@ -65,9 +65,9 @@ update msg model =
     --        , Cmd.none)
 
 
-nextid : Int -> Int -> Int
-nextid i cap =
-  if i < (cap - 1) then
-    i + 1
-  else
-    0
+-- nextid : Int -> Int -> Int
+-- nextid i cap =
+--   if i < (cap - 1) then
+--     i + 1
+--   else
+--     0

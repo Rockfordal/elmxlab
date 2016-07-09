@@ -6,6 +6,7 @@ import Json.Decode exposing (..)
 import Http
 import String
 
+
 stringToInt : Decoder String -> Decoder Int
 stringToInt d =
   customDecoder d String.toInt
