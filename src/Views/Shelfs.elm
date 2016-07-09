@@ -39,11 +39,13 @@ shelfsview model =
     ])
   ]
 
-addButton : Html msg
+addButton : Html Msg
 addButton =
   Html.div [] [
-    Html.a [Html.Attributes.attribute "class" "fixed-action-btn", Html.Attributes.attribute "style" "bottom: 15px; right: 10px;"] [Html.a [Html.Attributes.attribute "class" "btn-floating btn-large teal darken-4"] [
+    Html.a [Html.Attributes.attribute "href" "#", Html.Events.onClick CreateShelf, Html.Attributes.attribute "class" "btn-floating btn-large teal darken-4"] [
       Html.i [Html.Attributes.attribute "class" "large material-icons"] [Html.text "add"]
     ]
-  ]]
-  -- Html.button [Html.Events.onClick AddShelf] [Html.text "sdfsd"]
+  ]
+
+  -- Html.a [Html.Attributes.attribute "class" "fixed-action-btn", Html.Attributes.attribute "style" "bottom: 15px; right: 10px;"] [Html.text "
+  -- "]

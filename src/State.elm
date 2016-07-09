@@ -1,7 +1,6 @@
 module State exposing (..)
 
 import Types exposing (Model, Msg(..))
-import Service exposing (getShelfs)
 import Data    exposing (s1, i1)
 import Maybe   exposing (withDefault)
 import Array   exposing (fromList, get)
@@ -16,6 +15,7 @@ import Task
 import Debug exposing (log)
 import Navigation exposing (Location)
 import Routes exposing (Sitemap(..))
+import Service exposing (getShelfs, deleteShelf, postShelf)
 
 
 init : Sitemap -> ( Model, Cmd Msg )
@@ -53,23 +53,49 @@ update msg ({ route } as model) =
 
         FetchFail _ ->
           let
-            logga = log "error" ""
+              logga = log "error" ""
           in
-            (model, Cmd.none)
+              (model, Cmd.none)
 
         SetShelf id ->
           let
-            nylista = (List.filter (\p -> p.id == id) model.shelfs)
-            mabynewshelf = (List.head nylista)
-            newshelf = withDefault model.shelf (List.head nylista)
+              nylista = (List.filter (\p -> p.id == id) model.shelfs)
+              mabynewshelf = (List.head nylista)
+              newshelf = withDefault model.shelf (List.head nylista)
           in
-            ({ model | shelf = newshelf }, Cmd.none)
+              ({ model | shelf = newshelf }, Cmd.none)
+
+        CreateShelf ->
+            (model, postShelf)
+
+        CreatedShelf res ->
+          let
+              logga = "createdshelf"
+          in
+              (model, Cmd.none)
+
+        CreateShelfFail res ->
+          let
+              logga = log "createShelfError" res
+          in
+              (model, Cmd.none)
 
         DeleteShelf id ->
+              (model, (deleteShelf id))
+
+        DeleteShelfFail err ->
           let
-            newshelfs = (List.filter (\s -> s.id /= id) model.shelfs)
+              logga = log "deleteShelfError" err
           in
-            ({ model | shelfs = newshelfs}, Cmd.none)
+              (model, Cmd.none)
+
+        DeletedShelf res ->
+          let
+              logga = log "deletedShelf" "mm"
+              -- newshelfs = (List.filter (\s -> s.id /= id) model.shelfs)
+          in
+              (model, Cmd.none)
+              -- ({ model | shelfs = newshelfs}, deleteShelf id)
 
 
         -- UpdateSearch str ->

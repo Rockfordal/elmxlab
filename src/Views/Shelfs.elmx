@@ -39,11 +39,13 @@ shelfsview model =
     </div>
   </div>
 
-addButton : Html msg
+addButton : Html Msg
 addButton =
   <div>
-    <a class="fixed-action-btn" style="bottom: 15px; right: 10px;"><a class="btn-floating btn-large teal darken-4">
+    <a href="#" onClick={CreateShelf} class="btn-floating btn-large teal darken-4">
       <i class="large material-icons">add</i>
     </a>
   </div>
-  -- <button onClick={AddShelf}>sdfsd</button>
+
+  -- <a class="fixed-action-btn" style="bottom: 15px; right: 10px;">
+  -- </a>

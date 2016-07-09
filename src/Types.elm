@@ -45,7 +45,12 @@ type Msg
   | FetchItemSucceed (List Item)
   | FetchFail Http.Error
   | SetShelf Int
+  | CreateShelf
+  | CreatedShelf Http.Response
+  | CreateShelfFail Http.RawError
   | DeleteShelf Int
+  | DeleteShelfFail Http.RawError
+  | DeletedShelf Http.Response
   | NoOp
   -- | UpdateSearch String
   -- | Sortby String
