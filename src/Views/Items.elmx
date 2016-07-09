@@ -4,16 +4,16 @@ import Types exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
-itemview : Model -> Html Msg
-itemview model =
+itemview : Item -> Html Msg
+itemview item =
   <div>
     <div class="card">
       <div class="input-field col col l5 m4 s4" id="hylla 1">
-        <input disabled=true value="A01" id="disabled" type="text" class="validate">
+        <input disabled=true value={item.name} id="disabled" type="text" class="validate">
         <label for="disabled">Namn</label>
       </div>
       <div class="input-field col col l5 m4 s4">
-        <input disabled=true value="20" id="disabled" type="text" class="validate">
+        <input disabled=true value={item.info} id="disabled" type="text" class="validate">
         <label for="disabled">Storlek</label>
       </div>
         <div class="input-field col l1 m2 s2">
@@ -27,9 +27,12 @@ itemview model =
 
 itemsview : Model -> Html Msg
 itemsview model =
+    let
+       items = List.map itemview model.items
+    in
   <div class="container">
     <h3>Items</h3>
           <div class="row">
-            {itemview model}
+            {:items}
           </div>
       </div>
