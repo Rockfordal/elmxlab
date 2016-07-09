@@ -9,7 +9,7 @@ import Html.App exposing (program)
 main : Program Never
 main =
   program
-    { init = init "cats"
+    { init = init
     , update = update
     , subscriptions = subscriptions
     , view = view

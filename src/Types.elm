@@ -5,14 +5,10 @@ import Time exposing (Time, second)
 
 
 type alias Model =
-  {
-    topic      : String
-  , gifUrl     : String
+  { shelfs     : List Shelf
   , shelf      : Shelf
-  , shelfs     : List Shelf
-  , shelfindex : Int
   , items      : List Item
-  , counter    : Int
+  , item       : Item
   }
 
 type alias Shelf =
@@ -33,6 +29,5 @@ type Msg
   = FetchShelfSucceed (List Shelf)
   | FetchItemSucceed (List Item)
   | FetchFail Http.Error
-  | UpdateTopic String
   | SetShelf Int
   -- | Tick Time

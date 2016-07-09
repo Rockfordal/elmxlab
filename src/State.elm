@@ -8,23 +8,18 @@ import Maybe exposing (withDefault)
 import Array exposing (fromList, get)
 
 
-initialModel : String -> Model
-initialModel topic =
-  { topic = topic
-  , gifUrl = ""
-  , shelfs = [s1]
+initialModel : Model
+initialModel =
+  { shelfs = [s1]
   , shelf = s1
-  , shelfindex = 0
   , items = [i1]
-  , counter = 0
+  , item = i1
   }
 
 
-init : String -> ( Model, Cmd Msg )
-init topic =
-  ( initialModel topic
-  , getShelfs
-  )
+init : (Model, Cmd Msg)
+init =
+  ( initialModel , getShelfs)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -41,9 +36,6 @@ update msg model =
         logga = log "error" ""
       in
         (model, Cmd.none)
-
-    UpdateTopic topic ->
-      ({model | topic = topic}, Cmd.none)
 
     SetShelf id ->
       let
