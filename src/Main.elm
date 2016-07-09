@@ -1,23 +1,18 @@
-module Main exposing (main)
+module Main exposing (..)
 
-import State exposing (init, update)
-import Types exposing (Model, Msg(..))
-import View  exposing (view)
-import Html.App exposing (program)
--- import Time exposing (every, second)
+import Navigation
+import Routes
+import State exposing (update, urlUpdate, init)
+import Types exposing (Model, Msg)
+import View exposing (view)
+
 
 main : Program Never
 main =
-  program
-    { init = init
-    , update = update
-    , subscriptions = subscriptions
-    , view = view
-    }
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-  -- every second Tick
-  Sub.none
-  -- Sub.batch []
+    Navigation.program (Navigation.makeParser Routes.parsePath)
+        { init = init
+        , update = update
+        , urlUpdate = urlUpdate
+        , view = view
+        , subscriptions = \_ -> Sub.batch []
+        }

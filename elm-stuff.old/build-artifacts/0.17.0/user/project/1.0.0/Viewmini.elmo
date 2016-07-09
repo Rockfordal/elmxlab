@@ -1,0 +1,51 @@
+var _user$project$Viewmini$postitem = function (post) {
+	var escapedcontent = post.content;
+	var contenthtml = A2(
+		_evancz$elm_markdown$Markdown$toHtml,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		escapedcontent);
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[contenthtml]));
+};
+var _user$project$Viewmini$menyitem = F2(
+	function (currentpost, menupost) {
+		var aktivklass = _elm_lang$core$Native_Utils.eq(menupost.id, currentpost.id) ? 'active' : 'notactive';
+		var escapedcontent = menupost.content;
+		var escapedtitle = menupost.title;
+		var titlehtml = A2(
+			_evancz$elm_markdown$Markdown$toHtml,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			escapedtitle);
+		return A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$li,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class(aktivklass)
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$a,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$href('#'),
+									_elm_lang$html$Html_Events$onClick(
+									_user$project$Types$SetPost(menupost.id))
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[titlehtml]))
+						]))
+				]));
+	});
