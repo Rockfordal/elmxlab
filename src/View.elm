@@ -16,17 +16,7 @@ view model =
       -- menyer = List.map (menyitem model.shelf) model.shelfs
   in
     Html.div [] [
-          Html.nav [] [
-            Html.div [Html.Attributes.attribute "class" "nav-wrapper brown darken-2"] [
-              Html.a [Html.Attributes.attribute "href" "#!", Html.Attributes.attribute "class" "brand-logo"] [Html.text "Nice Rack"]
-              , Html.a [Html.Attributes.attribute "href" "#", Html.Attributes.attribute "data-activates" "mobile-demo", Html.Attributes.attribute "class" "button-collapse"] [Html.i [Html.Attributes.attribute "class" "material-icons"] [Html.text "menu"]]
-              , Html.ul [Html.Attributes.attribute "id" "slide-out", Html.Attributes.attribute "class" "side-nav"] [
-              ]
-              , Html.a [Html.Attributes.attribute "href" "#", Html.Attributes.attribute "data-activates" "slide-out", Html.Attributes.attribute "class" "button-collapse"] [Html.i [Html.Attributes.attribute "class" "mdi-navigation-menu"] []]
-              , Html.ul [Html.Attributes.attribute "class" "side-nav", Html.Attributes.attribute "id" "mobile-demo"] [
-              ]
-            ]
-          ]
+      navview model
         , Html.div [Html.Attributes.attribute "class" "container"] [
               Html.a [Html.Attributes.attribute "class" "fixed-action-btn", Html.Attributes.attribute "style" "bottom: 15px; right: 10px;"] [Html.a [Html.Attributes.attribute "class" "btn-floating btn-large teal darken-4"] [
                 Html.i [Html.Attributes.attribute "class" "large material-icons"] [Html.text "add"]
