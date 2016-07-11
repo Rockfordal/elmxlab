@@ -291,7 +291,7 @@ urlUpdate route ({ ready } as m) =
             { m | route = route }
     in
         case route of
-            HomeR () ->
+            ShelfR () ->
                 if ready then
                     model ! [ hejja () ]
                 else
