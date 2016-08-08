@@ -13,23 +13,24 @@ import Routes exposing (Sitemap(..))
 type alias Model =
   { route      : Sitemap
   , shelfs     : List Shelf
-  , shelf      : Shelf
   , items      : List Item
+  , shelf      : Shelf
   , item       : Item
   , ready      : Bool
   -- , error      : Maybe String
   -- , searchStr  : String
   -- , sortby     : String
   -- , sortdir    : String
-  -- , items : List Item.Types.Model
-  -- , item : Item.Types.Model
+  -- , items      : List Item.Types.Model
+  -- , item       : Item.Types.Model
   }
 
 type alias Shelf =
   {
-    id      : Int
-  , name    : String
-  , size    : Int
+    id       : Int
+  , label    : String
+  , size     : Int
+  -- , position : Int
   }
 
 type alias Item =

@@ -9,9 +9,10 @@ import String
 import Data    exposing (s1, i1)
 
 
-baseUrl : String
-baseUrl = "http://fire.solidcrm.se:3000/"
+fire = "http://fire.solidcrm.se:3000"
+anlu = "http://172.16.1.7:3000"
 
+baseUrl = anlu
 
 stringToInt : Decoder String -> Decoder Int
 stringToInt d =
@@ -20,16 +21,17 @@ stringToInt d =
 
 getShelfs : Cmd Msg
 getShelfs =
-  let url = "http://fire.solidcrm.se:3000/shelfs"
+  let url = baseUrl ++ "/shelfs"
   in Task.perform FetchFail FetchShelfSucceed (Http.get decodeShelfUrl url)
+
 
 jsonBody : String -> String
 jsonBody str =
     JSEncode.encode
         0
         (JSEncode.object
-            [ ( "name", JSEncode.string "damnelm2" )
-            , ( "size", JSEncode.int 16 )
+            [ ( "label", JSEncode.string "damnelm2" )
+            , ( "size",  JSEncode.int 16 )
             ]
         )
 
@@ -56,8 +58,9 @@ postJson token =
               , ("Authorization", token)
               ]
           , url = "http://fire.solidcrm.se:3000/shelfs"
-          , body = Http.string (jsonBody """{ "name": "hohallan", "size": 15 }""")
+          , body = Http.string (jsonBody """{ "label": "hohallan", "size": 15 }""")
           }
+
 
 realdelete : String -> Int -> String -> Platform.Task Http.RawError Http.Response
 realdelete url id token =
@@ -70,6 +73,7 @@ realdelete url id token =
                   , ("Authorization", token)]
       }
 
+
 deleteShelf : Int -> Cmd Msg
 deleteShelf id =
   let shelf = "shelfs/"
@@ -80,16 +84,16 @@ deleteShelf id =
 
 getItems : Cmd Msg
 getItems =
-  let url = "http://fire.solidcrm.se:3000/items"
+  let url = baseUrl ++ "/items"
   in Task.perform FetchFail FetchItemSucceed (Http.get decodeItemUrl url)
 
 
 shelfDecoder : Decoder Shelf
 shelfDecoder =
   object3 Shelf
-    (at ["id"]   int)
-    (at ["name"] string)
-    (at ["size"] int)
+    (at ["id"]    int)
+    (at ["label"] string)
+    (at ["size"]  int)
 
 itemDecoder : Decoder Item
 itemDecoder =
