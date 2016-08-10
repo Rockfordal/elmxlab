@@ -35,10 +35,10 @@ view model =
             , div [ class "container"]
                   [
                     case model.route of
-                      HomeR ()  -> home model
+                      HomeR  () -> home model
                       AboutR () -> about model
                       ShelfR () -> shelfsview model
-                      ItemR ()  -> itemsview model
+                      ItemR  () -> itemsview model
                       NotFoundR -> notFound
                 ]
             ]
