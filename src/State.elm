@@ -1,9 +1,15 @@
 module State exposing (..)
 
-import Types exposing (Model, Msg(..))
+import Types   exposing (Model, Msg(..))
 import Data    exposing (s1, i1)
 import Maybe   exposing (withDefault)
 import Array   exposing (fromList, get)
+import String  exposing (..)
+import Http    exposing (..)
+import Result exposing (Result(..), toMaybe)
+
+-- exposing (..)
+-- import String exposing (toInt)
 -- import Item.State
 -- import Item.Types
 -- import GraphQL.GetLinks   as GetLinks   exposing (QueryLinksResult)
@@ -15,7 +21,7 @@ import Task
 import Debug exposing (log)
 import Navigation exposing (Location)
 import Routes exposing (Sitemap(..))
-import Service exposing (getShelfs, deleteShelf, postShelf)
+import Service exposing (getShelfs, deleteShelf, postShelf, getItems)
 
 
 init : Sitemap -> ( Model, Cmd Msg )
@@ -80,8 +86,13 @@ update msg ({ route } as model) =
           in
               (model, Cmd.none)
 
-        DeleteShelf id ->
-              (model, (deleteShelf id))
+        DeleteShelf res ->
+          let
+              logga = log "deleteShelf" res
+          in
+              -- (model, Cmd.none)
+              (model, deleteShelf res)
+              -- (model, deleteShelf 99)
 
         DeleteShelfFail err ->
           let
@@ -91,11 +102,12 @@ update msg ({ route } as model) =
 
         DeletedShelf res ->
           let
-              logga = log "deletedShelf" "mm"
-              -- newshelfs = (List.filter (\s -> s.id /= id) model.shelfs)
+              maybeid = resToInt res.value
+              newshelfs = maybeRemoveById maybeid model.shelfs
+              -- logga = maybeLog maybeid
           in
-              (model, Cmd.none)
-              -- ({ model | shelfs = newshelfs}, deleteShelf id)
+              ({ model | shelfs = newshelfs}, Cmd.none)
+              -- (model, Cmd.none)
 
 
         -- UpdateSearch str ->
@@ -298,6 +310,9 @@ urlUpdate route ({ ready } as m) =
                     -- model ! [ getQuery "" "title" "asc" , hejja () ]
                     model ! [ getShelfs ]
 
+            ItemR () ->
+                    model ! [ getItems ]
+
             _ ->
                 model ! []
 
@@ -375,3 +390,29 @@ urlUpdate route ({ ready } as m) =
 --     i + 1
 --   else
 --     0
+
+
+maybeLog maybeid =
+  case maybeid of
+    Just id -> log "deltedShelf" id
+    Nothing -> log "fail" 0
+
+maybeRemoveById maybeid coll =
+    case maybeid of
+      Just id -> removeById id coll
+      Nothing -> coll
+
+removeById id coll =
+    List.filter (\s -> s.id /= id) coll
+
+resToInt : Value -> Maybe Int
+resToInt value =
+  let
+    sid =
+      case value of
+          Http.Text v -> v
+          _           -> "0"
+    intid = toInt sid
+    maybeid = toMaybe intid
+  in
+    maybeid

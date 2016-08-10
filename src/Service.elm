@@ -15,8 +15,7 @@ anlu = "http://172.16.1.7:3000"
 baseUrl = anlu
 
 stringToInt : Decoder String -> Decoder Int
-stringToInt d =
-  customDecoder d String.toInt
+stringToInt d = customDecoder d String.toInt
 
 
 getShelfs : Cmd Msg
@@ -66,9 +65,9 @@ realdelete : String -> Int -> String -> Platform.Task Http.RawError Http.Respons
 realdelete url id token =
   Http.send
       Http.defaultSettings
-      { verb = "DELETE"
-      , url = baseUrl ++ url ++ toString id
-      , body = Http.empty -- Http.string ""
+      { verb    = "DELETE"
+      , url     = baseUrl ++ url ++ toString id
+      , body    = Http.empty -- Http.string ""
       , headers = [ ("Content-Type", "application/json")
                   , ("Authorization", token)]
       }
@@ -76,9 +75,8 @@ realdelete url id token =
 
 deleteShelf : Int -> Cmd Msg
 deleteShelf id =
-  let shelf = "shelfs/"
-      token = "Basic dXNlcjpwYXNzd29yZA=="
-  in  Task.perform DeleteShelfFail DeletedShelf (realdelete shelf id token)
+  let token = "Basic dXNlcjpwYXNzd28yZA=="
+  in  Task.perform DeleteShelfFail DeletedShelf (realdelete "/shelfs/" id token)
   -- in  Task.perform FetchFail DeletedShelf (realdelete shelf id token)
 
 
