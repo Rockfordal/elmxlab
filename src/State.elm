@@ -15,8 +15,8 @@ update msg ({ route } as model) =
     case msg of
         RouteTo route            -> model ! [ Routes.navigateTo route ]
 
-        FetchShelfSucceed shelfs -> ({ model | shelfs = shelfs }, Cmd.none)
-        FetchItemSucceed items   -> ({ model | items = items }, Cmd.none)
+        FetchShelfSucceed shelfs -> ({ model | shelfs = shelfs }, Cmd.batch [(formFix ())])
+        FetchItemSucceed items   -> ({ model | items  = items }, Cmd.batch [(formFix ())])
         FetchFail _              -> (model, Cmd.none)
 
         CreateShelf              -> (model, postShelf)
