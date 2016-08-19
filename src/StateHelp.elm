@@ -2,8 +2,8 @@ module StateHelp exposing (..)
 
 import Types      exposing (Model, Msg(..), Shelf)
 import Routes     exposing (Sitemap(..))
-import Ports      exposing (closeModal, hejja)
-import Service    exposing (getShelfs, deleteShelf, postShelf, getItems)
+import Service    exposing (getShelfs, getItems, deleteShelf, postShelf)
+-- import Ports      exposing (closeModal, hejja)
 
 
 urlUpdate : Sitemap -> Model -> ( Model, Cmd Msg )
@@ -12,15 +12,9 @@ urlUpdate route ({ ready } as m) =
         model = { m | route = route }
     in
         case route of
-            ShelfR () ->
-                if ready then model ! [ hejja () ]
-                         else model ! [ getShelfs ]
-
-            ItemR () ->
-                model ! [ getItems ]
-
-            _ ->
-                model ! []
+            ShelfR () -> model ! [ getShelfs ]
+            ItemR  () -> model ! [ getItems ]
+            _         -> model ! []
 
 
 selectById: Int -> List Shelf -> List Shelf

@@ -6,13 +6,24 @@ import String   exposing (..)
 import Result   exposing (Result(..), toMaybe)
 import Types    exposing (Url)
 
+fire : String
+fire = "fire.solidcrm.se:3000"
+
+
+local : String
+local = "localhost:3000"
+
 
 baseUrl : Url
-baseUrl = "http://fire.solidcrm.se:3000/"
+baseUrl = "http://" ++ local ++ "/"
 
 
 shelfUrl : Url
 shelfUrl = baseUrl ++ "shelfs"
+
+
+itemUrl : Url
+itemUrl = baseUrl ++ "items"
 
 
 authToken : String
@@ -49,12 +60,12 @@ sendJSON url method token body =
       }
 
 
-postJson : Url -> Http.Body -> String -> Platform.Task Http.RawError Http.Response
-postJson url body token = sendJSON url "POST" token body
+postJSON : Url -> Http.Body -> String -> Platform.Task Http.RawError Http.Response
+postJSON url body token = sendJSON url "POST" token body
 
 
-realdelete : Url -> Int -> String -> Platform.Task Http.RawError Http.Response
-realdelete url id token =
+deleteJSON : Url -> Int -> String -> Platform.Task Http.RawError Http.Response
+deleteJSON url id token =
   let
       url = url ++ "/" ++ toString id
       body = Http.empty

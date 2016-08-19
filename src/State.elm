@@ -3,7 +3,7 @@ module State exposing (..)
 import Types       exposing (Model, Msg(..), Shelf)
 import Maybe       exposing (withDefault)
 import Routes      exposing (Sitemap(..))
-import Service     exposing (getShelfs, deleteShelf, postShelf, getItems)
+import Service     exposing (getShelfs, deleteShelf, postShelf)
 import ServiceHelp exposing (..)
 import StateHelp   exposing (..)
 import List        exposing (head)
@@ -28,14 +28,14 @@ update msg ({ route } as model) =
 
         DeletedShelf res ->
           let
-              maybeid = resToInt res.value
+              maybeid   = resToInt res.value
               newshelfs = maybeRemoveById maybeid model.shelfs
           in
               ({ model | shelfs = newshelfs}, Cmd.none)
 
         SetShelf id ->
           let
-              nylista = selectById id model.shelfs
+              nylista  = selectById id model.shelfs
               newshelf = withDefault model.shelf (head nylista)
           in
               ({ model | shelf = newshelf }, Cmd.none)
