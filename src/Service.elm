@@ -4,7 +4,6 @@ import Task exposing (Task)
 import Decoders exposing (..)
 import Http
 import ServiceHelp exposing (..)
--- import Data    exposing (s1, i1)
 
 
 -- Shelfs
