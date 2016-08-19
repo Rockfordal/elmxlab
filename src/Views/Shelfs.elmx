@@ -1,13 +1,14 @@
 module Views.Shelfs exposing (..)
 
 import Types exposing (..)
-import Html exposing (..)
+import Html  exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import List exposing (map)
 
 
-shelfview : Shelf -> Html Msg
-shelfview shelf =
+shelfrow : Shelf -> Html Msg
+shelfrow shelf =
   <div>
     <div class="card">
       <div class="input-field col col l5 m4 s4" id="hylla 1">
@@ -28,10 +29,10 @@ shelfview shelf =
   </div>
 
 
-shelfsview : Model -> Html Msg
-shelfsview model =
+shelfs : Model -> Html Msg
+shelfs model =
   let
-     shelfs = List.map shelfview model.shelfs
+     shelfs = map shelfrow model.shelfs
   in
     <div class="container">
       <h3>Hyller</h3>

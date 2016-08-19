@@ -11,22 +11,17 @@ jsonBody str =
   JSEncode.encode
       0
       (JSEncode.object
-          [ ( "name", JSEncode.string "damnelm2" )
-          , ( "size", JSEncode.int 16 )
+          [ ("name", JSEncode.string str)
+          , ("size", JSEncode.int 16)
           ])
-
-
-stringToInt : Decoder String -> Decoder Int
-stringToInt d =
-  customDecoder d String.toInt
 
 
 shelfDecoder : Decoder Shelf
 shelfDecoder =
   object3 Shelf
-    (at ["id"]   int)
+    (at ["id"]    int)
     (at ["label"] string)
-    (at ["size"] int)
+    (at ["size"]  int)
 
 
 itemDecoder : Decoder Item
@@ -47,3 +42,7 @@ decodeShelfUrl = list shelfDecoder
 
 decodeItemUrl : Decoder (List Item)
 decodeItemUrl = list itemDecoder
+
+
+stringToInt : Decoder String -> Decoder Int
+stringToInt d = customDecoder d String.toInt

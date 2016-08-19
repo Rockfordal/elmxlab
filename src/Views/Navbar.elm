@@ -21,8 +21,8 @@ link route label =
           [ text label ]
 
 
-viewNavbar : Html Msg
-viewNavbar =
+navbar : Html Msg
+navbar =
   div []
       [ ul [ class "dropdown-content", id "dropdown0" ]
           [ li [] [ link (HomeR ()) "Användare" ]

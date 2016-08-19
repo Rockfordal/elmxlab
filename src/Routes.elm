@@ -1,4 +1,5 @@
 module Routes exposing (Sitemap(..), parsePath, navigateTo, toString)
+
 import Navigation exposing (Location)
 import Route exposing (..)
 

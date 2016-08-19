@@ -4,18 +4,18 @@ import Html            exposing (..)
 import Html.Attributes exposing (..) -- (href)
 import Routes          exposing (Sitemap(..))
 import Types           exposing (Model, Msg(..))
-import Views.Shelfs    exposing (shelfsview)
-import Views.Items     exposing (itemsview)
-import Views.Home      exposing (..)
-import Views.Navbar    exposing (viewNavbar)
+import Views.Home      exposing (home)
+import Views.Shelfs    exposing (shelfs)
+import Views.Items     exposing (items)
+import Views.Navbar    exposing (navbar)
 
 
 setView : Model -> Html Msg
-setView model  =
- case model.route of
-    HomeR  () -> home model
-    ShelfR () -> shelfsview model
-    ItemR ()  -> itemsview model
+setView model =
+  case model.route of
+    HomeR  () -> home   model
+    ShelfR () -> shelfs model
+    ItemR  () -> items  model
     AboutR () -> about
     NotFoundR -> notFound
 
@@ -23,7 +23,7 @@ setView model  =
 view : Model -> Html Msg
 view model =
   div []
-      [ viewNavbar
+      [ navbar
       , div [ class "container"]
             [ setView model ]
       ]

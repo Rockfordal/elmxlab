@@ -1,7 +1,8 @@
 module Main exposing (main)
 import Navigation
 import Routes
-import State exposing (update, init)
+import Init exposing (init)
+import State exposing (update)
 import StateHelp exposing (urlUpdate)
 import Types exposing (Model, Msg)
 import Views.View exposing (view)

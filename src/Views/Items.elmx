@@ -1,8 +1,10 @@
 module Views.Items exposing (..)
 
 import Types exposing (..)
-import Html exposing (..)
+import Html  exposing (..)
 import Html.Attributes exposing (..)
+-- import Html.Events exposing (..)
+import List exposing (map)
 
 
 itemrow : Item -> Html Msg
@@ -25,12 +27,13 @@ itemrow item =
         </div>
     </div>
   </div>
+-- <a href="#" onClick={DeleteItem item.id}> <i class="small material-icons">delete</i> </a>
 
 
-itemsview : Model -> Html Msg
-itemsview model =
+items : Model -> Html Msg
+items model =
   let
-     items = List.map itemrow model.items
+     items = map itemrow model.items
   in
     <div class="container">
       <h3>Items</h3>
