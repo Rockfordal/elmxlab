@@ -47,8 +47,6 @@ update msg ({ route } as model) =
 
         SetShelf id ->
           let
-              -- nylista = (List.filter (\p -> p.id == id) model.shelfs)
-              -- nylista = (List.filter (\p -> p.id == id) model.shelfs)
               nylista = selectById id model.shelfs
               newshelf = withDefault model.shelf (List.head nylista)
           in
