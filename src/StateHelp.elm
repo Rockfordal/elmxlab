@@ -6,6 +6,23 @@ import Ports      exposing (closeModal, hejja)
 import Service    exposing (getShelfs, deleteShelf, postShelf, getItems)
 
 
+urlUpdate : Sitemap -> Model -> ( Model, Cmd Msg )
+urlUpdate route ({ ready } as m) =
+    let
+        model = { m | route = route }
+    in
+        case route of
+            ShelfR () ->
+                if ready then model ! [ hejja () ]
+                         else model ! [ getShelfs ]
+
+            ItemR () ->
+                model ! [ getItems ]
+
+            _ ->
+                model ! []
+
+
 selectById: Int -> List Shelf -> List Shelf
 selectById id coll = List.filter (\p -> p.id == id) coll
 
@@ -25,20 +42,3 @@ maybeRemoveById maybeid coll =
 --   case maybeid of
 --     Just id -> log "deltedShelf" id
 --     Nothing -> log "fail" 0
-
-
-urlUpdate : Sitemap -> Model -> ( Model, Cmd Msg )
-urlUpdate route ({ ready } as m) =
-    let
-        model = { m | route = route }
-    in
-        case route of
-            ShelfR () ->
-                if ready then model ! [ hejja () ]
-                         else model ! [ getShelfs ]
-
-            ItemR () ->
-                model ! [ getItems ]
-
-            _ ->
-                model ! []
