@@ -43,6 +43,8 @@ type Msg
   | DeleteShelf Int
   | DeleteShelfFail Http.RawError
   | DeletedShelf Http.Response
+  | Alerta String
+  | FormFix
   | NoOp
 
 type alias Url = String

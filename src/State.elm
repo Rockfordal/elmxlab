@@ -2,11 +2,12 @@ module State exposing (..)
 
 import Types       exposing (Model, Msg(..), Shelf)
 import Maybe       exposing (withDefault)
+import List        exposing (head)
 import Routes      exposing (Sitemap(..))
 import Service     exposing (getShelfs, deleteShelf, postShelf)
 import ServiceHelp exposing (..)
 import StateHelp   exposing (..)
-import List        exposing (head)
+import Ports       exposing (..)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -25,6 +26,8 @@ update msg ({ route } as model) =
         DeleteShelf id           -> (model, (deleteShelf id))
         DeleteShelfFail err      -> (model, Cmd.none)
         NoOp                     -> (model, Cmd.none)
+        Alerta msg               -> (model, Cmd.batch [(alert msg)])
+        FormFix                  -> (model, Cmd.batch [(formFix ())])
 
         DeletedShelf res ->
           let

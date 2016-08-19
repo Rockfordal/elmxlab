@@ -9,24 +9,27 @@ import List exposing (map)
 
 shelfrow : Shelf -> Html Msg
 shelfrow shelf =
-  <div>
-    <div class="card">
-      <div class="input-field col col l5 m4 s4" id="hylla 1">
-        <input disabled=false value={shelf.label} id="name" type="text" class="validate">
-        <label for="name">Namn</label>
-      </div>
-      <div class="input-field col col l5 m4 s4">
-        <input disabled=false value={toString shelf.size} id="shelf" type="text" class="validate">
-        <label for="size">Storlek</label>
-      </div>
-        <div class="input-field col l1 m2 s2">
-          <i class="small material-icons">mode_edit</i>
+  let nameid = "name" ++ (toString shelf.id)
+      sizeid = "size" ++ (toString shelf.id)
+  in
+    <div>
+      <div class="card">
+        <div class="input-field col l5 m4 s4">
+          <input value={shelf.label} id={nameid} type="text" class="validate">
+          <label for={nameid}>Namn</label>
         </div>
-        <div class="input-field col l1 m2 s2">
-          <a href="#" onClick={DeleteShelf shelf.id}> <i class="small material-icons">delete</i> </a>
+        <div class="input-field col l5 m4 s4">
+          <input value={toString shelf.size} id={sizeid} type="text" class="validate">
+          <label for={sizeid}>Storlek</label>
         </div>
+          <div class="input-field col l1 m2 s2">
+            <i class="small material-icons">mode_edit</i>
+          </div>
+          <div class="input-field col l1 m2 s2">
+            <a href="#" onClick={DeleteShelf shelf.id}> <i class="small material-icons">delete</i> </a>
+          </div>
+      </div>
     </div>
-  </div>
 
 
 shelfs : Model -> Html Msg
@@ -40,6 +43,8 @@ shelfs model =
         {:shelfs}
         {addButton}
       </div>
+        <br/>
+        <a href="#" onClick={FormFix}>Formfix</a>
     </div>
 
 

@@ -3,7 +3,6 @@ module StateHelp exposing (..)
 import Types      exposing (Model, Msg(..), Shelf)
 import Routes     exposing (Sitemap(..))
 import Service    exposing (getShelfs, getItems, deleteShelf, postShelf)
--- import Ports      exposing (closeModal, hejja)
 
 
 urlUpdate : Sitemap -> Model -> ( Model, Cmd Msg )

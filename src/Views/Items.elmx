@@ -3,7 +3,7 @@ module Views.Items exposing (..)
 import Types exposing (..)
 import Html  exposing (..)
 import Html.Attributes exposing (..)
--- import Html.Events exposing (..)
+import Html.Events exposing (..)
 import List exposing (map)
 
 
@@ -38,4 +38,5 @@ items model =
     <div class="container">
       <h3>Items</h3>
       <div class="row"> {:items} </div>
+        <a href="#" onClick={Alerta "Tjo"}>Alert</a>
     </div>

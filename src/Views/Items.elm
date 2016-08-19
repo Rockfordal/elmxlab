@@ -3,7 +3,7 @@ module Views.Items exposing (..)
 import Types exposing (..)
 import Html  exposing (..)
 import Html.Attributes exposing (..)
--- import Html.Events exposing (..)
+import Html.Events exposing (..)
 import List exposing (map)
 
 
@@ -38,4 +38,5 @@ items model =
     Html.div [Html.Attributes.attribute "class" "container"] [
       Html.h3 [] [Html.text "Items"]
       , Html.div [Html.Attributes.attribute "class" "row"] ([ ] ++ items ++ [ ])
+        , Html.a [Html.Attributes.attribute "href" "#", Html.Events.onClick (Alerta "Tjo")] [Html.text "Alert"]
     ]
