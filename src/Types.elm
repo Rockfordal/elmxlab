@@ -8,17 +8,18 @@ type alias Model =
   {
     route      : Sitemap
   , shelfs     : List Shelf
-  , shelf      : Shelf
   , items      : List Item
+  , shelf      : Shelf
   , item       : Item
   , ready      : Bool
   }
 
 type alias Shelf =
   {
-    id      : Int
-  , name    : String
-  , size    : Int
+    id       : Int
+  , label    : String
+  , size     : Int
+  -- , position : Int
   }
 
 type alias Item =

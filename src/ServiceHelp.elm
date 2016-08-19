@@ -1,6 +1,21 @@
 module ServiceHelp exposing (..)
 import Decoders exposing (..)
-import Http
+import Http exposing (..)
+import String  exposing (..)
+import Result exposing (Result(..), toMaybe)
+  
+
+resToInt : Value -> Maybe Int
+resToInt value =
+  let
+    sid =
+      case value of
+          Http.Text v -> v
+          _           -> "0"
+    intid = toInt sid
+    maybeid = toMaybe intid
+  in
+    maybeid
 
 
 baseUrl : String

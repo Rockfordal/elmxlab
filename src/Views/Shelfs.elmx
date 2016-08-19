@@ -10,12 +10,12 @@ shelfview shelf =
   <div>
     <div class="card">
       <div class="input-field col col l5 m4 s4" id="hylla 1">
-        <input disabled=true value={shelf.name} id="disabled" type="text" class="validate">
-        <label for="disabled">Namn</label>
+        <input disabled=false value={shelf.label} id="name" type="text" class="validate">
+        <label for="name">Namn</label>
       </div>
       <div class="input-field col col l5 m4 s4">
-        <input disabled=true value={toString shelf.size} id="disabled" type="text" class="validate">
-        <label for="disabled">Storlek</label>
+        <input disabled=false value={toString shelf.size} id="shelf" type="text" class="validate">
+        <label for="size">Storlek</label>
       </div>
         <div class="input-field col l1 m2 s2">
           <i class="small material-icons">mode_edit</i>

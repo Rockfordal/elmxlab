@@ -24,7 +24,7 @@ shelfDecoder : Decoder Shelf
 shelfDecoder =
   object3 Shelf
     (at ["id"]   int)
-    (at ["name"] string)
+    (at ["label"] string)
     (at ["size"] int)
 
 

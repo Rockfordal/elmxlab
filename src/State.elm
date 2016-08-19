@@ -1,14 +1,17 @@
 module State exposing (..)
 
-import Types      exposing (Model, Msg(..))
+import Types      exposing (Model, Msg(..), Shelf)
 import Data       exposing (s1, i1)
 import Maybe      exposing (withDefault)
 import Ports      exposing (closeModal, hejja)
 import Routes     exposing (Sitemap(..))
-import Service    exposing (getShelfs, deleteShelf, postShelf)
+import Service    exposing (getShelfs, deleteShelf, postShelf, getItems)
+import ServiceHelp exposing (..)
 -- import Navigation exposing (Location)
 -- import Array      exposing (fromList, get)
 -- import Debug      exposing (log)
+-- import Http       exposing (..)
+-- import Result     exposing (Result(..), toMaybe)
 -- import Task
 
 
@@ -36,8 +39,14 @@ update msg ({ route } as model) =
         CreateShelfFail res      -> (model, Cmd.none)
         DeleteShelf id           -> (model, (deleteShelf id))
         DeleteShelfFail err      -> (model, Cmd.none)
-        DeletedShelf res         -> (model, Cmd.none)
         NoOp                     -> (model, Cmd.none)
+
+        DeletedShelf res ->
+          let
+              maybeid = resToInt res.value
+              newshelfs = maybeRemoveById maybeid model.shelfs
+          in
+              ({ model | shelfs = newshelfs}, Cmd.none)
 
         SetShelf id ->
           let
@@ -56,5 +65,27 @@ urlUpdate route ({ ready } as m) =
             ShelfR () ->
                 if ready then model ! [ hejja () ]
                          else model ! [ getShelfs ]
-            _         ->
+
+            ItemR () ->
+                model ! [ getItems ]
+
+            _ ->
                 model ! []
+
+
+removeById : Int -> List Shelf -> List Shelf
+removeById id coll =
+    List.filter (\s -> s.id /= id) coll
+
+
+maybeRemoveById : Maybe Int -> List Shelf -> List Shelf
+maybeRemoveById maybeid coll =
+    case maybeid of
+      Just id -> removeById id coll
+      Nothing -> coll
+
+
+-- maybeLog maybeid =
+--   case maybeid of
+--     Just id -> log "deltedShelf" id
+--     Nothing -> log "fail" 0
