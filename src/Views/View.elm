@@ -5,11 +5,11 @@ import Html.Attributes exposing (..) -- (href)
 import Html.Events exposing (on, targetValue, onClick, onInput, onSubmit, onWithOptions)
 import Json.Decode as Json
 import Routes exposing (Sitemap(..))
-import Types exposing (Model, Msg(..))
-import Debug exposing (log)
+import Types  exposing (Model, Msg(..))
+import Debug  exposing (log)
 import Views.Shelfs exposing (shelfsview)
-import Views.Items exposing (itemsview)
-import Views.Home exposing (..)
+import Views.Items  exposing (itemsview)
+import Views.Home   exposing (..)
 import Views.Navbar exposing (viewNavbar)
 -- import Views.Layout exposing (..)
 -- import Item.View exposing (viewItems)
@@ -18,12 +18,10 @@ import Views.Navbar exposing (viewNavbar)
 
 
 notFound : Html Msg
-notFound =
-    h1 [] [ text "Page not found" ]
+notFound = h1 [] [ text "Sidan hittades inte" ]
 
-about : Model -> Html Msg
-about model =
-    h1 [] [ text "About mig" ]
+about :Html Msg
+about = h1 [] [ text "Om mig" ]
 
 view : Model -> Html Msg
 view model =
@@ -36,9 +34,9 @@ view model =
                   [
                     case model.route of
                       HomeR ()  -> home model
-                      AboutR () -> about model
                       ShelfR () -> shelfsview model
                       ItemR ()  -> itemsview model
+                      AboutR () -> about
                       NotFoundR -> notFound
                 ]
             ]

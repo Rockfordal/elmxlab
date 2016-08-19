@@ -1,7 +1,7 @@
 module Views.Navbar exposing (..)
 
-import Html exposing (..)
-import Html.Attributes exposing (..)
+import Html exposing (Html, div, text, ul, li, a, i, nav)
+import Html.Attributes exposing (class, href, attribute, id)
 import Html.Events exposing (on, targetValue, onClick, onInput, onSubmit, onWithOptions)
 import Types exposing (Msg(..))
 import Routes exposing (Sitemap(..))
@@ -11,56 +11,36 @@ import Json.Decode as Json
 link : Sitemap -> String -> Html Msg
 link route label =
     let
-        opts =
-            { preventDefault = True
-            , stopPropagation = False
-            }
+        opts = { preventDefault  = True
+               , stopPropagation = False
+               }
     in
-        a
-            [ href (Routes.toString route)
-            , onWithOptions "click" opts (Json.succeed <| RouteTo route)
-            ]
-            [ text label ]
+        a [ href (Routes.toString route)
+          , onWithOptions "click" opts (Json.succeed <| RouteTo route)
+          ]
+          [ text label ]
 
 
 viewNavbar : Html Msg
 viewNavbar =
   div []
       [ ul [ class "dropdown-content", id "dropdown0" ]
-
-          [ li []
-              [ a [ href "#!" ]
-                  [ text "Users" ]
-              ]
-          , li []
-              [ a [ href "#!" ]
-                  [ text "Settings" ]
-              ]
-          , li [ class "divider" ]
-              []
-          , li []
-              [ a [ href "#!" ]
-                  [ text "Login" ]
-              ]
+          [ li [] [ link (HomeR ()) "Användare" ]
+          , li [] [ link (HomeR ()) "Inställningar" ]
+          , li [ class "divider" ] []
+          , li [] [ link (HomeR ()) "Logga in" ]
           ]
       , nav []
           [ div [ class "nav-wrapper" ]
-              [ a [ class "brand-logo", href "#!" ]
+              [ a [ class "brand-logo", href (Routes.toString (HomeR ())) ]
                   [ text "GrELMthinkDB" ]
               , ul [ class "right hide-on-med-and-down" ]
-
-                  [ li [] [ link (HomeR  ()) "Hem" ]
-                  , li [] [ link (ShelfR ()) "Hyllor" ]
-                  , li [] [ link (ItemR  ()) "Items" ]
+                  [
+                    li [] [ link (ShelfR ()) "Hyllor" ]
+                  , li [] [ link (ItemR  ()) "Föremål" ]
                   , li [] [ link (AboutR ()) "About" ]
-                 , li []
+                  , li []
                       [ a [ class "dropdown-button", attribute "data-activates" "dropdown0", href "#!" ]
                           [ text "Admin"
                           , i [ class "material-icons right" ]
-                              [ text "arrow_drop_down" ]
-                          ]
-                      ]
-                  ]
-              ]
-          ]
-      ]
+                              [ text "arrow_drop_down" ] ] ] ] ] ] ]

@@ -4,8 +4,8 @@ import Types exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
-itemview : Item -> Html Msg
-itemview item =
+itemrow : Item -> Html Msg
+itemrow item =
   <div>
     <div class="card">
       <div class="input-field col col l5 m4 s4" id="hylla 1">
@@ -27,12 +27,10 @@ itemview item =
 
 itemsview : Model -> Html Msg
 itemsview model =
-    let
-       items = List.map itemview model.items
-    in
-  <div class="container">
-    <h3>Items</h3>
-          <div class="row">
-            {:items}
-          </div>
-      </div>
+  let
+     items = List.map itemrow model.items
+  in
+    <div class="container">
+      <h3>Items</h3>
+      <div class="row"> {:items} </div>
+    </div>

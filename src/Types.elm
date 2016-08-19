@@ -2,27 +2,16 @@ port module Types exposing (..)
 
 import Http
 import Routes exposing (Sitemap(..))
--- import Item.Types
--- import GraphQL.GetLinks   as GetLinks   exposing (QueryLinksResult)
--- import GraphQL.CreateLink as CreateLink exposing (MutationResult)
--- import GraphQL.DeleteLink as DeleteLink exposing (DeleteLinkResult)
--- import GraphQL.UpdateLink as UpdateLink exposing (UpdateLinkResult)
--- import Time exposing (Time, second)
 
 
 type alias Model =
-  { route      : Sitemap
+  {
+    route      : Sitemap
   , shelfs     : List Shelf
   , shelf      : Shelf
   , items      : List Item
   , item       : Item
   , ready      : Bool
-  -- , error      : Maybe String
-  -- , searchStr  : String
-  -- , sortby     : String
-  -- , sortdir    : String
-  -- , items : List Item.Types.Model
-  -- , item : Item.Types.Model
   }
 
 type alias Shelf =
@@ -45,48 +34,12 @@ type Msg
   | FetchItemSucceed (List Item)
   | FetchFail Http.Error
   | SetShelf Int
+
   | CreateShelf
   | CreatedShelf Http.Response
   | CreateShelfFail Http.RawError
+
   | DeleteShelf Int
   | DeleteShelfFail Http.RawError
   | DeletedShelf Http.Response
   | NoOp
-  -- | UpdateSearch String
-  -- | Sortby String
-  -- | Sortdir String
-  -- | ClearItem
-  -- | UpdateTitle String
-  -- | UpdateUrl String
-  -- | Get (Maybe QueryLinksResult)
-  -- | Add (Maybe MutationResult)
-  -- | Del (Maybe DeleteLinkResult)
-  -- | Update (Maybe UpdateLinkResult)
-  -- | TryAdd
-  -- | TryDel String
-  -- | TryUpdate
-  -- | SetItem Item.Types.Model
-  -- | Tick Time
-
-
--- type alias Edge =
---     { node :
---         { id : Maybe String
---         , title : Maybe String
---         , url : Maybe String
---         , createdAt : Maybe String
---         }
---     }
---
---
--- type alias QueryResult a b c d =
---     { d
---         | store :
---             { c
---                 | linkConnection :
---                     { b
---                         | edges :
---                             a
---                     }
---             }
---     }

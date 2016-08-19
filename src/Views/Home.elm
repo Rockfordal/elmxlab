@@ -2,7 +2,7 @@ module Views.Home exposing (..) -- (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..) -- (href)
-import Html.Events exposing (on, targetValue, onClick, onInput, onSubmit, onWithOptions)
+-- import Html.Events exposing (on, targetValue, onClick, onInput, onSubmit, onWithOptions)
 import Types exposing (Model, Msg(..))
 
 
@@ -68,7 +68,6 @@ home model =
                 [ href "#modal1"
                 , class
                     ("btn-floating waves-effect waves-light modal-trigger grey right")
-
                 -- , onClick (ClearItem)
                 ]
                 [ i [ class "material-icons" ]
