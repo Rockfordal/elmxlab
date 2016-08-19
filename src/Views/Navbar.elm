@@ -38,7 +38,6 @@ navbar =
                   [
                     li [] [ link (ShelfR ()) "Hyllor" ]
                   , li [] [ link (ItemR  ()) "Föremål" ]
-                  , li [] [ link (AboutR ()) "About" ]
                   , li []
                       [ a [ class "dropdown-button", attribute "data-activates" "dropdown0", href "#!" ]
                           [ text "Admin"

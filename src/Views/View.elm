@@ -16,7 +16,6 @@ setView model =
     HomeR  () -> home   model
     ShelfR () -> shelfs model
     ItemR  () -> items  model
-    AboutR () -> about
     NotFoundR -> notFound
 
 

@@ -6,17 +6,15 @@ import Route exposing (..)
 
 type Sitemap
     = HomeR  ()
-    | AboutR ()
     | ShelfR ()
     | ItemR  ()
     | NotFoundR
 
 
 homeR  = HomeR  := static ""
-aboutR = AboutR := static "about"
-shelfR = ShelfR := static "shelfs"
 itemR  = ItemR  := static "items"
-sitemap = router [ homeR, aboutR, shelfR, itemR ]
+shelfR = ShelfR := static "shelfs"
+sitemap = router [ homeR, shelfR, itemR ]
 
 
 match : String -> Sitemap
@@ -27,9 +25,8 @@ toString : Sitemap -> String
 toString r =
     case r of
         HomeR  () -> reverse homeR  []
-        AboutR () -> reverse aboutR []
-        ShelfR () -> reverse shelfR []
         ItemR  () -> reverse itemR  []
+        ShelfR () -> reverse shelfR []
         NotFoundR -> Debug.crash "cannot render NotFound"
 
 
