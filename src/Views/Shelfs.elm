@@ -1,4 +1,5 @@
 module Views.Shelfs exposing (..)
+
 import Types exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -10,7 +11,7 @@ shelfview shelf =
   Html.div [] [
     Html.div [Html.Attributes.attribute "class" "card"] [
       Html.div [Html.Attributes.attribute "class" "input-field col col l5 m4 s4", Html.Attributes.attribute "id" "hylla 1"] [
-        Html.input [Html.Attributes.attribute "disabled" "false", Html.Attributes.attribute "value" shelf.label, Html.Attributes.attribute "id" "name", Html.Attributes.attribute "type" "text", Html.Attributes.attribute "class" "validate"] []
+        Html.input [Html.Attributes.attribute "disabled" "false", Html.Attributes.attribute "value" (shelf.label), Html.Attributes.attribute "id" "name", Html.Attributes.attribute "type" "text", Html.Attributes.attribute "class" "validate"] []
         , Html.label [Html.Attributes.attribute "for" "name"] [Html.text "Namn"]
       ]
       , Html.div [Html.Attributes.attribute "class" "input-field col col l5 m4 s4"] [
@@ -26,23 +27,25 @@ shelfview shelf =
     ]
   ]
 
+
 shelfsview : Model -> Html Msg
 shelfsview model =
   let
      shelfs = List.map shelfview model.shelfs
   in
-  Html.div [Html.Attributes.attribute "class" "container"] [
-    Html.h3 [] [Html.text "Hyller"]
-    , Html.div [Html.Attributes.attribute "class" "row"] ([
-      ] ++ shelfs ++ [
-      addButton
-    ])
-  ]
+    Html.div [Html.Attributes.attribute "class" "container"] [
+      Html.h3 [] [Html.text "Hyller"]
+      , Html.div [Html.Attributes.attribute "class" "row"] ([
+        ] ++ shelfs ++ [
+        addButton
+      ])
+    ]
+
 
 addButton : Html Msg
 addButton =
   Html.div [] [
-    Html.a [Html.Attributes.attribute "href" "#", Html.Events.onClick CreateShelf, Html.Attributes.attribute "class" "btn-floating btn-large teal darken-4"] [
+    Html.a [Html.Attributes.attribute "href" "#", Html.Events.onClick (CreateShelf), Html.Attributes.attribute "class" "btn-floating btn-large teal darken-4"] [
       Html.i [Html.Attributes.attribute "class" "large material-icons"] [Html.text "add"]
     ]
   ]

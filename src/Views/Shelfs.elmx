@@ -1,4 +1,5 @@
 module Views.Shelfs exposing (..)
+
 import Types exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -26,18 +27,20 @@ shelfview shelf =
     </div>
   </div>
 
+
 shelfsview : Model -> Html Msg
 shelfsview model =
   let
      shelfs = List.map shelfview model.shelfs
   in
-  <div class="container">
-    <h3>Hyller</h3>
-    <div class="row">
-      {:shelfs}
-      {addButton}
+    <div class="container">
+      <h3>Hyller</h3>
+      <div class="row">
+        {:shelfs}
+        {addButton}
+      </div>
     </div>
-  </div>
+
 
 addButton : Html Msg
 addButton =

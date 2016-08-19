@@ -4,6 +4,7 @@ import Types exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
+
 itemrow : Item -> Html Msg
 itemrow item =
   <div>
@@ -24,6 +25,7 @@ itemrow item =
         </div>
     </div>
   </div>
+
 
 itemsview : Model -> Html Msg
 itemsview model =

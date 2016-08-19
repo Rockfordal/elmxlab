@@ -44,3 +44,5 @@ type Msg
   | DeleteShelfFail Http.RawError
   | DeletedShelf Http.Response
   | NoOp
+
+type alias Url = String
